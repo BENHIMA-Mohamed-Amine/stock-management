@@ -10,7 +10,7 @@ if (isset($_POST['conectee'])) {
         $_SESSION['admin'] = $resultat;
         echo ("<pre>");
         print_r($_SESSION);
-        header("Location: index.html");
+        header("Location: index.php");
     }
 }
 ?>
