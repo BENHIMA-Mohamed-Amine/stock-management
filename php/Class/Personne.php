@@ -1,42 +1,65 @@
 <?php
-class Personne
-{
+
+require_once "Dao.php";
+require_once("AfficherTout.php");
+
+class Personne {
+
+    // bach ndeclarer la methode afficher li ftrait f had la class
+    use AfiicherTout;
+
     // Constructeur
     public function __construct(
         protected string $nom,
         protected string $prenom,
         protected string $adr,
         protected string $tele,
-        protected string $email
-    ){}
+        protected string $email,
+        protected string $image
+    ) {
+    }
 
     // Getter
-    public function __get(string $propety) {
-        switch ($propety) {
+    public function __get(string $property) {
+        switch ($property) {
             case 'nom':
                 return $this->nom;
-                break;
             case 'prenom':
                 return $this->prenom;
-                break;
             case 'adr':
                 return $this->adr;
-                break;
-            case 'adr':
+            case 'tele':
                 return $this->tele;
-                break;
-            case 'adr':
+            case 'email':
                 return $this->email;
-                break;
-            default:
-                throw new Exception("<b>ERROR :<b> {$propety} property is invalid!!!!");
+            case 'image':
+                return $this->image;
         }
     }
 
-    // inser une nouvelle personne
-    public function inserer() {
-        
+    // ajouter un nouveau Client ou Fournisseur
+    public function Ajouter($nom_de_class) {
+        Dao::ajouterPersonne($this->nom, $this->prenom, $this->adr, $this->tele, $this->email, $nom_de_class);
+    }
+
+
+    // Modifier un Client ou Fournisseur
+    public static function modifier($id, $nom, $prenom, $adr, $tele, $email, $nom_de_class) {
+        Dao::modifierPersonne($id, $nom, $prenom, $adr, $tele, $email, $nom_de_class);
+    }
+
+    // Supprimer un Client ou Fournisseur
+    public static function supprimer($id, $nom_de_class) {
+        Dao::supprimerPersonne($id, $nom_de_class);
+    }
+
+    // bach n3ref ch7al mn personne kayn f DB
+    public static function nbrDesTuples($nom_de_class) {
+        return Dao::nbrDesTuples($nom_de_class);
+    }
+
+    // bach nafficher personne wa7ed
+    public static function affciherPersonne($id, $nom_de_class) {
+        return Dao::affciherPersonne($id, $nom_de_class);
     }
 }
-
-  

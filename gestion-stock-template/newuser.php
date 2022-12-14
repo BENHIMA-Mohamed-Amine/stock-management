@@ -53,7 +53,7 @@ session_start();
                     </div>
                 </div>
 
-                <form class="card" method="post" action="./newuser.php">
+                <form class="card" method="post" action="ajouterAdmin.php" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-3 col-sm-6 col-12">
@@ -84,16 +84,16 @@ session_start();
                                 <div class="form-group">
                                     <label>Mot de passe</label>
                                     <div class="pass-group">
-                                        <input type="password" class=" pass-inputs" name="tele" value="">
+                                        <input type="password" class=" pass-inputs" name="mdp" value="">
                                         <span class="fas toggle-passworda fa-eye-slash"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label> Profile Picture</label>
+                                    <label for="image"> Image de profile</label>
                                     <div class="image-upload image-upload-new">
-                                        <input type="file">
+                                        <input type="file" id="image" name="image" accept="image/png, image/jpeg">
                                         <div class="image-uploads">
                                             <img src="assets/img/icons/upload.svg" alt="img">
                                             <h4>Drag and drop a file to upload</h4>
@@ -102,9 +102,8 @@ session_start();
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <a href="javascript:void(0);" class="btn btn-submit me-2" type="submit"
-                                    name="ajouter">Ajouter</a>
-                                <a href="javascript:void(0);" class="btn btn-cancel" type="reset">Annuler</a>
+                                <button class="btn btn-submit me-2" type="submit" name="ajouter">Ajouter</button>
+                                <button class="btn btn-cancel" type="reset">Annuler</button>
                             </div>
                         </div>
                     </div>
