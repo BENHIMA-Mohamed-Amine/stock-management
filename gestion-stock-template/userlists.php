@@ -76,12 +76,12 @@ session_start();
                             <table class="table  datanew">
                                 <thead>
                                     <tr>
-                                        <th>Nom </th>
-                                        <th>Prénom</th>
+                                        <th>Family Name </th>
+                                        <th>First Name</th>
                                         <th>E-mail</th>
-                                        <th>Mot de passe</th>
-                                        <th>Adresse</th>
-                                        <th>Téléphone</th>
+                                        <th>Password</th>
+                                        <th>Adress</th>
+                                        <th>Phone</th>
                                     </tr>
                                 </thead>
                                 <tbody>

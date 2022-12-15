@@ -49,7 +49,7 @@ session_start();
                 <div class="page-header">
                     <div class="page-title">
                         <h4>Admin</h4>
-                        <h6>Ajouter un admin</h6>
+                        <h6>Create new admin</h6>
                     </div>
                 </div>
 
@@ -58,11 +58,11 @@ session_start();
                         <div class="row">
                             <div class="col-lg-3 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Nom</label>
+                                    <label>Family Name</label>
                                     <input type="text" name="nom">
                                 </div>
                                 <div class="form-group">
-                                    <label>Adresse</label>
+                                    <label>Adress</label>
                                     <input type="text" name="adr">
                                 </div>
                                 <div class="form-group">
@@ -74,15 +74,15 @@ session_start();
                             </div>
                             <div class="col-lg-3 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Prénom</label>
+                                    <label>First Name</label>
                                     <input type="text" name="prenom">
                                 </div>
                                 <div class="form-group">
-                                    <label>Téléphone</label>
+                                    <label>Phone</label>
                                     <input type="text" name="tele">
                                 </div>
                                 <div class="form-group">
-                                    <label>Mot de passe</label>
+                                    <label>Password</label>
                                     <div class="pass-group">
                                         <input type="password" class=" pass-inputs" name="mdp" value="">
                                         <span class="fas toggle-passworda fa-eye-slash"></span>
@@ -91,7 +91,7 @@ session_start();
                             </div>
                             <div class="col-lg-3 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="image"> Image de profile</label>
+                                    <label for="image"> Profile Picture</label>
                                     <div class="image-upload image-upload-new">
                                         <input type="file" id="image" name="image" accept="image/png, image/jpeg">
                                         <div class="image-uploads">
@@ -102,8 +102,8 @@ session_start();
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <button class="btn btn-submit me-2" type="submit" name="ajouter">Ajouter</button>
-                                <button class="btn btn-cancel" type="reset">Annuler</button>
+                                <button class="btn btn-submit me-2" type="submit" name="ajouter">Add</button>
+                                <button class="btn btn-cancel" type="reset">Cancel</button>
                             </div>
                         </div>
                     </div>
