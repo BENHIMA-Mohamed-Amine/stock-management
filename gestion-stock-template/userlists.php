@@ -91,19 +91,19 @@ session_start();
                                             <?= $admins[$i]['nom']; ?>
                                         </td>
                                         <td>
-                                            <?= $admins[$i]['nom']; ?>
+                                            <?= $admins[$i]['prenom']; ?>
                                         </td>
                                         <td>
-                                            <?= $admins[$i]['nom']; ?>
+                                            <?= $admins[$i]['email']; ?>
                                         </td>
                                         <td>
-                                            <?= $admins[$i]['nom']; ?>
+                                            <?= $admins[$i]['mdp']; ?>
                                         </td>
                                         <td>
-                                            <?= $admins[$i]['nom']; ?>
+                                            <?= $admins[$i]['adr']; ?>
                                         </td>
                                         <td>
-                                            <?= $admins[$i]['nom']; ?>
+                                            <?= $admins[$i]['tele']; ?>
                                         </td>
                                     </tr>
                                     <?php endfor ?>

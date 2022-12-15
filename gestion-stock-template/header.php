@@ -22,14 +22,18 @@
     <ul class="nav user-menu">
         <li class="nav-item dropdown has-arrow main-drop">
             <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
-                <span class="user-img"><img src="assets/img/profiles/avator1.jpg" alt="">
-                    <span class="status online"></span></span>
+                <span class="user-img">
+                    <img src="<?= $_SESSION['admin']['image'] ?>" alt="">
+                    <span class="status online"></span>
+                </span>
             </a>
             <div class="dropdown-menu menu-drop-user">
                 <div class="profilename">
                     <div class="profileset">
-                        <span class="user-img"><img src="assets/img/profiles/avator1.jpg" alt="">
-                            <span class="status online"></span></span>
+                        <span class="user-img">
+                            <img src="<?= $_SESSION['admin']['image'] ?>" alt="">
+                            <span class="status online"></span>
+                        </span>
                         <div class="profilesets">
                             <h6>
                                 <?= $_SESSION['admin']['nom'] . " " . $_SESSION['admin']['prenom'] ?>
@@ -38,11 +42,14 @@
                         </div>
                     </div>
                     <hr class="m-0">
-                    <a class="dropdown-item" href="profile.html"> <i class="me-2" data-feather="user"></i> My
+                    <a class="dropdown-item" href="profile.php"> <i class="me-2" data-feather="user"></i> My
                         Profile</a>
                     <hr class="m-0">
-                    <a class="dropdown-item logout pb-0" href="signin.php"><img src="assets/img/icons/log-out.svg"
-                            class="me-2" alt="img">Logout</a>
+                    <a class="dropdown-item logout pb-0" href="logout.php">
+                        <img src="assets/img/icons/log-out.svg" -->
+                        <class="me-2" alt="img">
+                            Logout
+                    </a>
                 </div>
             </div>
         </li>

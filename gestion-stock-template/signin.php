@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("../php/Class/Admin.php");
 if (isset($_POST['conectee'])) {
     extract($_POST);

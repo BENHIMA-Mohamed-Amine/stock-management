@@ -63,6 +63,12 @@ class Dao {
         $pdo->prepare($sql)->execute([$nom, $prenom, $adr, $tele, $email, $mdp, $id]);
     }
 
+    public static function modifierImageAdmin($id, $image) {
+        $pdo = Dao::getPDO();
+        $sql = "UPDATE admin SET image=? WHERE id=?";
+        $pdo->prepare($sql)->execute([$image, $id]);
+    }
+
     // bach n inserer categorie jdida
     public static function ajouterCat($lib_cat) {
         $pdo = Dao::getPDO();

@@ -31,9 +31,14 @@ class Admin extends Personne {
         Dao::ajouterAdmin($this->nom, $this->prenom, $this->adr, $this->tele, $this->email, $this->mdp, $this->image, $nom_de_class);
     }
 
-    // Modifier admin
+    // Modifier les donnes sauf l'image d'admin
     public static function modifierAdmin($id, $nom, $prenom, $adr, $tele, $email, $mdp, $nom_de_class) {
         Dao::modifierAdmin($id, $nom, $prenom, $adr, $tele, $email, $mdp, $nom_de_class);
+    }
+
+    // Modifier l'image d'admin
+    public static function modifierImageAdmin($id, $image) {
+        Dao::modifierImageAdmin($id, $image);
     }
 
     // Supprimer un compte d'un admin

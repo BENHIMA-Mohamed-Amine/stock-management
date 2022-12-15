@@ -1,37 +1,40 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 
-$msg = "";
+echo ("<pre>");
+print_r($_POST);
 
-// If upload button is clicked ...
-if (isset($_POST['upload'])) {
+// $msg = "";
 
-    $filename = $_FILES["uploadfile"]["name"];
-    $tempname = $_FILES["uploadfile"]["tmp_name"];
-    $folder = "./image/" . $filename;
+// // If upload button is clicked ...
+// if (isset($_POST['upload'])) {
 
-    echo ("<pre>");
-    print_r($_FILES);
+//     $filename = $_FILES["uploadfile"]["name"];
+//     $tempname = $_FILES["uploadfile"]["tmp_name"];
+//     $folder = "./image/" . $filename;
 
-    echo ($folder);
-    echo ("<br>" . $tempname);
-    echo ("<br>" . $filename);
+//     echo ("<pre>");
+//     print_r($_FILES);
 
-    $db = mysqli_connect("localhost", "root", "", "test");
+//     echo ($folder);
+//     echo ("<br>" . $tempname);
+//     echo ("<br>" . $filename);
 
-    // Get all the submitted data from the form
-    $sql = "INSERT INTO image (filename) VALUES ('$filename')";
+//     $db = mysqli_connect("localhost", "root", "", "test");
 
-    // Execute query
-    mysqli_query($db, $sql);
+//     // Get all the submitted data from the form
+//     $sql = "INSERT INTO image (filename) VALUES ('$filename')";
 
-    // Now let's move the uploaded image into the folder: image
-    if (move_uploaded_file($tempname, $folder)) {
-        echo "<h3> Image uploaded successfully!</h3>";
-    } else {
-        echo "<h3> Failed to upload image!</h3>";
-    }
-}
+//     // Execute query
+//     mysqli_query($db, $sql);
+
+//     // Now let's move the uploaded image into the folder: image
+//     if (move_uploaded_file($tempname, $folder)) {
+//         echo "<h3> Image uploaded successfully!</h3>";
+//     } else {
+//         echo "<h3> Failed to upload image!</h3>";
+//     }
+// }
 ?>
 
 <!DOCTYPE html>
