@@ -1,10 +1,10 @@
 <div class="header">
 
     <div class="header-left active">
-        <a href="index.html" class="logo">
+        <a href="index.php" class="logo">
             <img src="assets/img/logo.png" alt="">
         </a>
-        <a href="index.html" class="logo-small">
+        <a href="index.php" class="logo-small">
             <img src="assets/img/logo-small.png" alt="">
         </a>
         <a id="toggle_btn" href="javascript:void(0);">
