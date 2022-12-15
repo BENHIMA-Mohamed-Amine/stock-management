@@ -213,10 +213,10 @@
                 </li>
                 <li class="submenu">
                     <a href="javascript:void(0);"><img src="assets/img/icons/users1.svg" alt="img"><span>
-                            Users</span> <span class="menu-arrow"></span></a>
+                            Admins</span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li><a href="newuser.html" class="active">New User </a></li>
-                        <li><a href="userlists.html">Users List</a></li>
+                        <li><a href="newuser.php" class="active">New Admin </a></li>
+                        <li><a href="userlists.php">Admins List</a></li>
                     </ul>
                 </li>
                 <li class="submenu">

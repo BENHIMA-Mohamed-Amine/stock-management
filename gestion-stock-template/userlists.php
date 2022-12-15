@@ -85,7 +85,7 @@ session_start();
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php for ($i = 0; $i < 2; $i++): ?>
+                                    <?php for ($i = 0; $i < sizeof($admins); $i++): ?>
                                     <tr>
                                         <td>
                                             <?= $admins[$i]['nom']; ?>
