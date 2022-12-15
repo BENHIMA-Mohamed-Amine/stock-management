@@ -3,7 +3,7 @@
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="index.html"><img src="assets/img/icons/dashboard.svg" alt="img"><span>
+                    <a href="index.php"><img src="assets/img/icons/dashboard.svg" alt="img"><span>
                             Dashboard</span> </a>
                 </li>
                 <li class="submenu">
