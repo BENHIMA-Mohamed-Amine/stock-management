@@ -20,25 +20,29 @@ session_start();
         // print_r($_POST);
 
         extract($_POST);
-        $filename = $_FILES["image"]["name"];
-        $tempname = $_FILES["image"]["tmp_name"];
-        $new_image = "./image/" . $filename;
-        // recuper l' ancienne image
-        $old_image = $_SESSION['admin']['image'];
+        // kan cheki wach besa7 dar bedel image 3ad ndir mofification sinn kankheliha kifma howa
+        if (!($_FILES["image"]["name"] === "")) {
+            $filename = $_FILES["image"]["name"];
+            $tempname = $_FILES["image"]["tmp_name"];
+            $new_image = "./image/" . $filename;
+            // recuper l' ancienne image
+            $old_image = $_SESSION['admin']['image'];
 
-        if (move_uploaded_file($tempname, $new_image)) {
-            Admin::modifierImageAdmin($id, $new_image);
-        } else {
-            exit("<h3> Failed to update image!</h3>");
-        }
-        // supprimer l' ancienne image
-        if (!unlink($old_image)) {
-            exit("<h3> Failed to delete image!</h3>");
-        }
+            if (move_uploaded_file($tempname, $new_image)) {
+                Admin::modifierImageAdmin($id, $new_image);
+            } else {
+                exit("<h3> Failed to update image!</h3>");
+            }
+            // supprimer l' ancienne image
+            if (!unlink($old_image)) {
+                exit("<h3> Failed to delete image!</h3>");
+            }
 
-        // changer le valeurs de la session par les nouvelles valeurs
-        $_SESSION['admin'] = Admin::estAdmin($_SESSION['admin']['email'], $_SESSION['admin']['mdp']);
+            // changer le valeurs de la session par les nouvelles valeurs
+            $_SESSION['admin'] = Admin::estAdmin($_SESSION['admin']['email'], $_SESSION['admin']['mdp']);
+        }
     }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
