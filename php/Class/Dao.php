@@ -127,17 +127,17 @@ class Dao {
     }
 
     // bach ninserer marque
-    public static function inserMarque($nom_marque, $description_marque) {
+    public static function inserMarque($nom_marque, $description_marque, $image) {
         $pdo = Dao::getPDO();
-        $sql = "INSERT INTO marque(nom_marque, description_marque) VALUES (?,?)";
-        $pdo->prepare($sql)->execute([$nom_marque, $description_marque]);
+        $sql = "INSERT INTO marque(nom_marque, description_marque, image) VALUES (?,?,?)";
+        $pdo->prepare($sql)->execute([$nom_marque, $description_marque, $image]);
     }
 
     // bach nmodifier marque
-    public static function modifierMarque($id_marque, $nom_marque, $description_marque) {
+    public static function modifierMarque($nom_marque, $description_marque, $image, $id_marque) {
         $pdo = Dao::getPDO();
-        $sql = "UPDATE amrque SET nom_marque=?, description_marque=? WHERE id_marque=?";
-        $pdo->prepare($sql)->execute([$nom_marque, $description_marque, $id_marque]);
+        $sql = "UPDATE marque SET nom_marque=?, description_marque=?, image =? WHERE id_marque=?";
+        $pdo->prepare($sql)->execute([$nom_marque, $description_marque, $image, $id_marque]);
     }
 
     // bach nsupprimer une marque
@@ -149,16 +149,16 @@ class Dao {
 
     // bach afficher marque we7da
 
-    public static function affichetMarque($id_marque) {
+    public static function afficherMarque($id_marque) {
         $pdo = Dao::getPDO();
         $sql = "SELECT * FROM marque WHERE $id_marque = ?;";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$id_marque]);
-        $cat = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($cat === false) {
+        $marque = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($marque === false) {
             exit("cet id = {$id_marque} n'exist pas");
         }
-        return $cat;
+        return $marque;
     }
 
     public static function adminExiste($email) {
