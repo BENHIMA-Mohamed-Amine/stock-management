@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2022 at 12:31 PM
+-- Generation Time: Dec 17, 2022 at 11:31 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -44,7 +44,8 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id`, `nom`, `prenom`, `adr`, `tele`, `email`, `image`, `mdp`) VALUES
 (2, 'root', '', '', '', 'root@gmail.com', '', 'root'),
-(6, 'belcaida', 'haitam', 'Laboriosam exercita', 'Mollit sed explicabo', 'test@gmail.com', './image/WIN_20221125_16_22_22_Pro.jpg', 'test');
+(6, 'belcaida', 'haitam', 'Laboriosam exercita', 'Mollit sed explicabo', 'test@gmail.com', './image/WIN_20221125_16_22_22_Pro.jpg', 'test'),
+(7, 'belcaida', 'haitam', 'chi 7aja', '0766032618', 'belcaida', './image/haitam_pic.jpg', '0000');
 
 -- --------------------------------------------------------
 
@@ -66,8 +67,17 @@ CREATE TABLE `approvisionnement` (
 
 CREATE TABLE `categorie` (
   `id_cat` int(11) NOT NULL,
-  `lib_cat` varchar(100) DEFAULT NULL
+  `lib_cat` varchar(100) DEFAULT NULL,
+  `desc_cat` varchar(1000) NOT NULL,
+  `image` varchar(10000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `categorie`
+--
+
+INSERT INTO `categorie` (`id_cat`, `lib_cat`, `desc_cat`, `image`) VALUES
+(4, 'Apple phones', 'apple phones only', './image/apple_phone.jpg');
 
 -- --------------------------------------------------------
 
@@ -144,8 +154,19 @@ CREATE TABLE `fournisseur` (
 CREATE TABLE `marque` (
   `id_marque` int(11) NOT NULL,
   `nom_marque` varchar(1000) NOT NULL,
-  `description_marque` varchar(5000) NOT NULL
+  `description_marque` varchar(5000) NOT NULL,
+  `image` varchar(10000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `marque`
+--
+
+INSERT INTO `marque` (`id_marque`, `nom_marque`, `description_marque`, `image`) VALUES
+(17, 'Adidas', 'trois bandes', './image/adidas.png'),
+(18, 'Nike', 'nike brand', './image/nike.png'),
+(19, 'haitam brand', 'best brand in the world', './image/haitam_pic.jpg'),
+(20, 'Puma', 'puma brand', './image/Puma.jpg');
 
 -- --------------------------------------------------------
 
@@ -242,13 +263,13 @@ ALTER TABLE `produit`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `client`
@@ -266,7 +287,7 @@ ALTER TABLE `fournisseur`
 -- AUTO_INCREMENT for table `marque`
 --
 ALTER TABLE `marque`
-  MODIFY `id_marque` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_marque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables

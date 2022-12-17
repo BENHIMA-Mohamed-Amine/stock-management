@@ -70,17 +70,17 @@ class Dao {
     }
 
     // bach n inserer categorie jdida
-    public static function ajouterCat($lib_cat) {
+    public static function ajouterCat($lib_cat, $desc_cat, $image) {
         $pdo = Dao::getPDO();
-        $sql = "INSERT INTO categorie(lib_cat) VALUES (?)";
-        $pdo->prepare($sql)->execute([$lib_cat]);
+        $sql = "INSERT INTO categorie(lib_cat, desc_cat, image) VALUES (?,?,?)";
+        $pdo->prepare($sql)->execute([$lib_cat, $desc_cat, $image]);
     }
 
     // bach nmodifier libelle d category
-    public static function modifierCat($id_cat, $lib_cat) {
+    public static function modifierCat($id_cat, $lib_cat, $desc_cat, $image) {
         $pdo = Dao::getPDO();
-        $sql = "UPDATE categorie SET lib_cat=? WHERE lib_cat=?";
-        $pdo->prepare($sql)->execute([$lib_cat, $id_cat]);
+        $sql = "UPDATE categorie SET lib_cat=?, desc_cat=?, image=? WHERE id_cat=?";
+        $pdo->prepare($sql)->execute([$lib_cat, $desc_cat, $image, $id_cat]);
     }
 
     // Supprimer une categorie
