@@ -14,8 +14,8 @@
                         <li><a href="addcategory.php">Add Category</a></li>
                         <li><a href="brandlist.php">Brand List</a></li>
                         <li><a href="addbrand.php">Add Brand</a></li>
-                        <li><a href="productlist.html">Product List</a></li>
-                        <li><a href="addproduct.html">Add Product</a></li>
+                        <li><a href="productlist.php">Product List</a></li>
+                        <li><a href="addproduct.php">Add Product</a></li>
                     </ul>
                 </li>
                 <li class="submenu">

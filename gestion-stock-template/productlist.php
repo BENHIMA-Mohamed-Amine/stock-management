@@ -3,12 +3,12 @@ session_start();
 ?>
 <?php if (isset($_SESSION['admin'])): ?>
 <?php
-  require("../php/Class/Categorie.php");
-  if (isset($_GET['id_cat'])) {
+  require_once("../php/Class/Product.php");
+  if (isset($_GET['num_pr'])) {
     extract($_GET);
-    Categorie::supprimerCat($id_cat);
+    Product::deletePr($num_pr);
   }
-  $cats = Categorie::afficher("Categorie");
+  $products = Product::prJoinCatJoinMarque();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,12 +51,13 @@ session_start();
       <div class="content">
         <div class="page-header">
           <div class="page-title">
-            <h4>Product Category list</h4>
-            <h6>View/Search product Category</h6>
+            <h4>Product List</h4>
+            <h6>Manage your products</h6>
           </div>
           <div class="page-btn">
-            <a href="addcategory.php" class="btn btn-added">
-              <img src="assets/img/icons/plus.svg" class="me-1" alt="img" />Add Category
+            <a href="addproduct.php" class="btn btn-added">
+              <img src="assets/img/icons/plus.svg" alt="img" class="me-1" />
+              Add New Product
             </a>
           </div>
         </div>
@@ -66,50 +67,68 @@ session_start();
             <div class="table-top">
               <div class="search-set">
                 <div class="search-input">
-                  <a class="btn btn-searchset"><img src="assets/img/icons/search-white.svg" alt="img" /></a>
+                  <a class="btn btn-searchset">
+                    <img src="assets/img/icons/search-white.svg" alt="img" />
+                  </a>
                 </div>
               </div>
             </div>
-
-
             <div class="table-responsive">
               <table class="table datanew">
                 <thead>
                   <tr>
-                    <th>Category image</th>
-                    <th>Category name</th>
-                    <th>Description</th>
-                    <th>Created By</th>
+                    <th>Product Name</th>
+                    <th>Reference</th>
+                    <th>Category</th>
+                    <th>Brand</th>
+                    <th>Purchase price</th>
+                    <th>Unit price</th>
+                    <th>Qty</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php for ($i = 0; $i < sizeof($cats); $i++): ?>
+                  <?php foreach ($products as $pr): ?>
                   <tr>
-                    <td>
-                      <a class="product-img">
-                        <img src="<?= $cats[$i]['cat_image'] ?>" alt="product" />
+                    <td class="productimgname">
+                      <a href="javascript:void(0);" class="product-img">
+                        <img src="<?= $pr['pr_image'] ?>" alt="product" />
+                      </a>
+                      <a href="">
+                        <?= $pr['lib_pr'] ?>
                       </a>
                     </td>
                     <td>
-                      <?= $cats[$i]['lib_cat'] ?>
+                      <?= $pr['num_pr'] ?>
                     </td>
                     <td>
-                      <?= $cats[$i]['desc_cat'] ?>
+                      <?= $pr['lib_cat'] ?>
                     </td>
                     <td>
-                      <?= $_SESSION['admin']['nom'] . " " . $_SESSION['admin']['prenom'] ?>
+                      <?= $pr['nom_marque'] ?>
                     </td>
                     <td>
-                      <a class="me-3" href="editcategory.php?id_cat=<?= $cats[$i]['id_cat'] ?>">
+                      <?= $pr['prix_achat'] ?>
+                    </td>
+                    <td>
+                      <?= $pr['prix_uni'] ?>
+                    </td>
+                    <td>
+                      <?= $pr['qte_stock'] ?>
+                    </td>
+                    <td>
+                      <a class="me-3" href="product-details.php?num_pr=<?= $pr['num_pr']; ?>">
+                        <img src="assets/img/icons/eye.svg" alt="img" />
+                      </a>
+                      <a class="me-3" href="editproduct.php?num_pr=<?= $pr['num_pr']; ?>">
                         <img src="assets/img/icons/edit.svg" alt="img" />
                       </a>
-                      <a class="me-3" href="categorylist.php?id_cat=<?= $cats[$i]['id_cat'] ?>">
+                      <a href="productlist.php?num_pr=<?= $pr['num_pr']; ?>">
                         <img src="assets/img/icons/delete.svg" alt="img" />
                       </a>
                     </td>
                   </tr>
-                  <?php endfor ?>
+                  <?php endforeach ?>
                 </tbody>
               </table>
             </div>

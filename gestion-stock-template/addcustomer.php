@@ -3,23 +3,9 @@ session_start();
 ?>
 <?php if (isset($_SESSION['admin'])): ?>
 <?php
-  require_once("../php/Class/Product.php");
-  require_once("../php/Class/Categorie.php");
-  require_once("../php/Class/Marque.php");
-  $cats = Categorie::afficher("categorie");
-  $brands = Marque::afficher("marque");
-  if (isset($_POST['add'])) {
+  if (isset($_POST['submit'])) {
     extract($_POST);
-    $filename = $_FILES["image"]["name"];
-    $tempname = $_FILES["image"]["tmp_name"];
-    $image = "./image/product/" . $filename;
 
-    if (move_uploaded_file($tempname, $image)) {
-      $nv_pr = new Product($num_pr, $id_cat, $id_marque, $lib_pr, $desc_pr, $prix_uni, $prix_achat, $qte_stock, $image);
-      $nv_pr->addPr();
-    } else {
-      exit("<h3> Failed to upload image!</h3>");
-    }
   }
 ?>
 <!DOCTYPE html>
@@ -49,8 +35,20 @@ session_start();
   <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
 
   <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    @media (min-width: 992px) {
+      .col-lg-3 {
+        flex: 0 0 auto;
+        width: 33%;
+      }
 
+      .col-lg-9 {
+        flex: 0 0 auto;
+        width: 67%;
+      }
+    }
   </style>
+
 </head>
 
 <body>
@@ -65,81 +63,50 @@ session_start();
       <div class="content">
         <div class="page-header">
           <div class="page-title">
-            <h4>Product Add</h4>
-            <h6>Create new product</h6>
+            <h4>Customer Management</h4>
+            <h6>Add/Update Customer</h6>
           </div>
         </div>
+
         <div class="card">
           <div class="card-body">
-            <form class="row" method="post" action="addproduct.php" enctype="multipart/form-data">
+            <form class="row" method="post" action="addcustomer.php" enctype="multipart/form-data">
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
-                  <label>Reference</label>
-                  <input type="text" name="num_pr" />
+                  <label>Customer First Name</label>
+                  <input type="text" name="prenom" />
+                  <input type="hidden" name="id" value="" />
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
-                  <label>Product Name</label>
-                  <input type="text" name="lib_pr" />
+                  <label>Customer First Name</label>
+                  <input type="text" name="nom" />
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
-                  <label>Category</label>
-                  <select class="select" name="id_cat">
-                    <option value="">Choose Category</option>
-                    <?php foreach ($cats as $item): ?>
-                    <option value="<?= $item['id_cat']; ?>">
-                      <?= $item['lib_cat']; ?>
-                    </option>
-                    <?php endforeach ?>
-                  </select>
+                  <label>Email</label>
+                  <input type="text" name="email" />
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
-                  <label>Brand</label>
-                  <select class="select" name="id_marque">
-                    <option value="">Choose Brand</option>
-                    <?php foreach ($brands as $item): ?>
-                    <option value="<?= $item['id_marque']; ?>">
-                      <?= $item['nom_marque']; ?>
-                    </option>
-                    <?php endforeach ?>
-                  </select>
+                  <label>Phone</label>
+                  <input type="text" name="tele" />
                 </div>
               </div>
-              <div class="col-lg-3 col-sm-6 col-12">
+              <div class="col-lg-9 col-12">
                 <div class="form-group">
-                  <label>Quantity</label>
-                  <input type="text" name="qte_stock" />
-                </div>
-              </div>
-              <div class="col-lg-3 col-sm-6 col-12">
-                <div class="form-group">
-                  <label>purchase price</label>
-                  <input type="text" name="prix_achat" />
-                </div>
-              </div>
-              <div class="col-lg-3 col-sm-6 col-12">
-                <div class="form-group">
-                  <label>unit price</label>
-                  <input type="text" name="prix_uni" />
-                </div>
-              </div>
-
-              <div class="col-lg-3 col-sm-6 col-12">
-                <div class="form-group">
-                  <label>description</label>
-                  <input type="text" name="desc_pr" />
+                  <label>Address</label>
+                  <input type="text" name="adr" />
                 </div>
               </div>
               <div class="col-lg-12">
                 <div class="form-group">
-                  <label> Product Image</label>
+                  <label> Avatar</label>
                   <div class="image-upload">
-                    <input type="file" name="image" />
+                    <input type="file" />
                     <div class="image-uploads">
                       <img src="assets/img/icons/upload.svg" alt="img" />
                       <h4>Drag and drop a file to upload</h4>
@@ -148,8 +115,8 @@ session_start();
                 </div>
               </div>
               <div class="col-lg-12">
-                <button class="btn btn-submit me-2" name="add">Add product</button>
-                <a href="productlist.php" class="btn btn-cancel">Cancel</a>
+                <button class="btn btn-submit me-2" name="submit">Add/Edit</button>
+                <a href="customerlist.php" class="btn btn-cancel">Cancel</a>
               </div>
             </form>
           </div>
@@ -175,6 +142,16 @@ session_start();
   <script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
 
   <script src="assets/js/script.js"></script>
+</body>
+
+</html>
+<script src="assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
+<script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
+
+<script src="assets/js/script.js"></script>
+</body>
+
+</html> src="assets/js/script.js"></script>
 </body>
 
 </html>

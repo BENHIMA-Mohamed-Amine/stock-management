@@ -84,7 +84,7 @@ session_start();
                   <tr>
                     <td>
                       <a class="product-img">
-                        <img src="<?= $brands[$i]['image'] ?>" alt="product" />
+                        <img src="<?= $brands[$i]['br_image'] ?>" alt="product" />
                       </a>
                     </td>
                     <td>

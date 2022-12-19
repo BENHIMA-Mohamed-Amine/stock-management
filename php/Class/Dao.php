@@ -72,14 +72,14 @@ class Dao {
     // bach n inserer categorie jdida
     public static function ajouterCat($lib_cat, $desc_cat, $image) {
         $pdo = Dao::getPDO();
-        $sql = "INSERT INTO categorie(lib_cat, desc_cat, image) VALUES (?,?,?)";
+        $sql = "INSERT INTO categorie(lib_cat, desc_cat, cat_image) VALUES (?,?,?)";
         $pdo->prepare($sql)->execute([$lib_cat, $desc_cat, $image]);
     }
 
     // bach nmodifier libelle d category
     public static function modifierCat($id_cat, $lib_cat, $desc_cat, $image) {
         $pdo = Dao::getPDO();
-        $sql = "UPDATE categorie SET lib_cat=?, desc_cat=?, image=? WHERE id_cat=?";
+        $sql = "UPDATE categorie SET lib_cat=?, desc_cat=?, cat_image=? WHERE id_cat=?";
         $pdo->prepare($sql)->execute([$lib_cat, $desc_cat, $image, $id_cat]);
     }
 
@@ -129,14 +129,14 @@ class Dao {
     // bach ninserer marque
     public static function inserMarque($nom_marque, $description_marque, $image) {
         $pdo = Dao::getPDO();
-        $sql = "INSERT INTO marque(nom_marque, description_marque, image) VALUES (?,?,?)";
+        $sql = "INSERT INTO marque(nom_marque, description_marque, br_image) VALUES (?,?,?)";
         $pdo->prepare($sql)->execute([$nom_marque, $description_marque, $image]);
     }
 
     // bach nmodifier marque
     public static function modifierMarque($nom_marque, $description_marque, $image, $id_marque) {
         $pdo = Dao::getPDO();
-        $sql = "UPDATE marque SET nom_marque=?, description_marque=?, image =? WHERE id_marque=?";
+        $sql = "UPDATE marque SET nom_marque=?, description_marque=?, br_image =? WHERE id_marque=?";
         $pdo->prepare($sql)->execute([$nom_marque, $description_marque, $image, $id_marque]);
     }
 
@@ -171,4 +171,35 @@ class Dao {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public static function addPr($num_pr, $id_cat, $id_marque, $lib_pr, $desc_pr, $prix_uni, $prix_achat, $qte_stock, $image) {
+        $pdo = Dao::getPDO();
+        $sql = "INSERT INTO produit VALUES (?,?,?,?,?,?,?,?,?)";
+        $pdo->prepare($sql)->execute([$num_pr, $id_cat, $id_marque, $lib_pr, $desc_pr, $prix_uni, $prix_achat, $qte_stock, $image]);
+    }
+
+    public static function prJoinCatJoinMarque() {
+        $pdo = Dao::getPDO();
+        $sql = "SELECT * FROM (produit NATURAL JOIN categorie) NATURAL JOIN marque;";
+        $stmt = $pdo->query($sql);
+        return $stmt->fetchAll();
+    }
+
+    public static function deletePr($num_pr) {
+        $pdo = Dao::getPDO();
+        $sql = "DELETE FROM produit WHERE num_pr  = ?";
+        $pdo->prepare($sql)->execute([$num_pr]);
+    }
+    public static function displayPr($num_pr) {
+        $pdo = Dao::getPDO();
+        $sql = "SELECT * FROM (produit NATURAL JOIN categorie) NATURAL JOIN marque; WHERE num_pr=?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$num_pr]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function editPr($num_pr, $id_cat, $id_marque, $lib_pr, $desc_pr, $prix_uni, $prix_achat, $qte_stock, $image, $new_num_pr) {
+        $pdo = Dao::getPDO();
+        $sql = "UPDATE produit SET id_cat=?, id_marque=?, lib_pr =?, desc_pr=?, prix_uni=?, prix_achat=?, qte_stock=?, pr_image=?, num_pr=? WHERE num_pr=?";
+        $pdo->prepare($sql)->execute([$id_cat, $id_marque, $lib_pr, $desc_pr, $prix_uni, $prix_achat, $qte_stock, $image, $new_num_pr, $num_pr]);
+    }
 }
