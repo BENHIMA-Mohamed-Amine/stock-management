@@ -24,7 +24,7 @@ session_start();
         if (!($_FILES["image"]["name"] === "")) {
             $filename = $_FILES["image"]["name"];
             $tempname = $_FILES["image"]["tmp_name"];
-            $new_image = "./image/" . $filename;
+            $new_image = "./image/admin/" . $filename;
             // recuper l' ancienne image
             $old_image = $_SESSION['admin']['image'];
 

@@ -255,6 +255,14 @@ class Dao {
     }
 
     public static function deletePrPurchase($num_pr) {
+        $res = Dao::displayPr($num_pr);
+        $qty = $res['qte_stock'];
+        $res = Dao::displayPrPurchase($num_pr);
+        $qty_purchase = $res['qte_achete'];
+        $pdo = Dao::getPDO();
+        $sql = "UPDATE produit SET qte_stock=?-? WHERE num_pr=?";
+        $pdo->prepare($sql)->execute([$qty, $qty_purchase, $num_pr]);
+
         $pdo = Dao::getPDO();
         $sql = "DELETE FROM est_compose WHERE num_pr  = ?";
         $pdo->prepare($sql)->execute([$num_pr]);
@@ -270,5 +278,81 @@ class Dao {
         $pdo = Dao::getPDO();
         $sql = "DELETE FROM approvisionnement WHERE num_app  = ?";
         $pdo->prepare($sql)->execute([$num_app]);
+    }
+
+    public static function allAboutProducts() {
+        $pdo = Dao::getPDO();
+        $sql = "SELECT * FROM produit NATURAL JOIN marque NATURAL JOIN categorie;";
+        return $pdo->query($sql)->fetchAll();
+    }
+
+    public static function isSale($num_com) {
+        $pdo = Dao::getPDO();
+        $sql = "SELECT * FROM commande WHERE num_com = ?;";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$num_com]);
+        $purchase = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($purchase === false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public static function addSale($num_com, $date_com, $id_cli) {
+        $pdo = Dao::getPDO();
+        $sql = "INSERT INTO commande VALUES (?,?,?)";
+        $pdo->prepare($sql)->execute([$num_com, $date_com, $id_cli]);
+    }
+
+    public static function prSale($num_pr, $num_com, $qte_pr, $prix_vente) {
+        $pdo = Dao::getPDO();
+        $sql = "INSERT INTO contient_pr VALUES (?,?,?,?)";
+        $pdo->prepare($sql)->execute([$num_pr, $num_com, $qte_pr, $prix_vente]);
+    }
+
+    public static function deleteQty($num_pr, $qte_pr) {
+        $res = Dao::displayPr($num_pr);
+        $old_qty = $res['qte_stock'];
+        $pdo = Dao::getPDO();
+
+        $sql = "UPDATE produit SET qte_stock=?-? WHERE num_pr=?";
+        $pdo->prepare($sql)->execute([$old_qty, $qte_pr, $num_pr]);
+    }
+
+    public static function displayPrsSale($num_com) {
+        $pdo = Dao::getPDO();
+        $sql = "SELECT * FROM produit NATURAL JOIN contient_pr WHERE num_com=?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$num_com]);
+        return $stmt->fetchAll();
+    }
+
+    public static function displaySale($num_com) {
+        $pdo = Dao::getPDO();
+        $sql = "SELECT * FROM commande  WHERE num_com=?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$num_com]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function displayPrSale($num_pr) {
+        $pdo = Dao::getPDO();
+        $sql = "SELECT * FROM contient_pr  WHERE num_pr=?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$num_pr]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function deletePrSale($num_pr) {
+        $res = Dao::displayPr($num_pr);
+        $qty = $res['qte_stock'];
+        $res = Dao::displayPrSale($num_pr);
+        $qty_sale = $res['qte_pr'];
+        $pdo = Dao::getPDO();
+        $sql = "UPDATE produit SET qte_stock=?+? WHERE num_pr=?";
+        $pdo->prepare($sql)->execute([$qty, $qty_sale, $num_pr]);
+        $sql = "DELETE FROM contient_pr WHERE num_pr  = ?";
+        $pdo->prepare($sql)->execute([$num_pr]);
     }
 }

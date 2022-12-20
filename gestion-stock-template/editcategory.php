@@ -16,7 +16,7 @@ session_start();
       // han kaykoun howa bgha imodifi ta image 
       $filename = $_FILES["image"]["name"];
       $tempname = $_FILES["image"]["tmp_name"];
-      $image = "./image/" . $filename;
+      $image = "./image/category/" . $filename;
 
       // var_dump($image);
       // echo "<pre>";

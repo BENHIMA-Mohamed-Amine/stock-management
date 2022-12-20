@@ -16,7 +16,7 @@ session_start();
     } else {
       $filename = $_FILES["image"]["name"];
       $tempname = $_FILES["image"]["tmp_name"];
-      $image = "./image/product/" . $filename;
+      $image = "./image/client/" . $filename;
 
       // var_dump($image);
       // echo "<pre>";

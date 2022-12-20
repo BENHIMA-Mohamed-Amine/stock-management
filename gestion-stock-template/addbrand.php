@@ -9,7 +9,7 @@ session_start();
     extract($_POST);
     $filename = $_FILES["image"]["name"];
     $tempname = $_FILES["image"]["tmp_name"];
-    $image = "./image/" . $filename;
+    $image = "./image/brand/" . $filename;
 
     if (move_uploaded_file($tempname, $image)) {
       $brand = new Marque($nom_marque, $description_marque, $image);

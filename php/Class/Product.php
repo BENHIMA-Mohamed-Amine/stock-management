@@ -37,4 +37,11 @@ class Product {
         Dao::editQty($num_pr, $qte_achete);
     }
 
+    public static function allAboutProducts() {
+        return Dao::allAboutProducts();
+    }
+
+    public static function deleteQty($num_pr, $qte_pr) {
+        Dao::deleteQty($num_pr, $qte_pr);
+    }
 }

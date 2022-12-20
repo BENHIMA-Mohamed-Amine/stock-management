@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2022 at 11:31 AM
+-- Generation Time: Dec 21, 2022 at 12:51 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -55,9 +55,17 @@ INSERT INTO `admin` (`id`, `nom`, `prenom`, `adr`, `tele`, `email`, `image`, `md
 
 CREATE TABLE `approvisionnement` (
   `num_app` varchar(50) NOT NULL,
-  `date_app` date DEFAULT NULL,
-  `id_four` int(11) DEFAULT NULL
+  `date_app` varchar(100) DEFAULT NULL,
+  `id_four` int(11) DEFAULT NULL,
+  `desc_app` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `approvisionnement`
+--
+
+INSERT INTO `approvisionnement` (`num_app`, `date_app`, `id_four`, `desc_app`) VALUES
+('12345', '20-12-2022', 4, 'uyuhl');
 
 -- --------------------------------------------------------
 
@@ -69,15 +77,16 @@ CREATE TABLE `categorie` (
   `id_cat` int(11) NOT NULL,
   `lib_cat` varchar(100) DEFAULT NULL,
   `desc_cat` varchar(1000) NOT NULL,
-  `image` varchar(10000) NOT NULL
+  `cat_image` varchar(10000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `categorie`
 --
 
-INSERT INTO `categorie` (`id_cat`, `lib_cat`, `desc_cat`, `image`) VALUES
-(4, 'Apple phones', 'apple phones only', './image/apple_phone.jpg');
+INSERT INTO `categorie` (`id_cat`, `lib_cat`, `desc_cat`, `cat_image`) VALUES
+(4, 'Apple phones', 'apple phones only', './image/apple_phone.jpg'),
+(6, 'PC', 'mac pc', './image/mac_pc.jpg');
 
 -- --------------------------------------------------------
 
@@ -91,8 +100,16 @@ CREATE TABLE `client` (
   `prenom` varchar(100) DEFAULT NULL,
   `adr` varchar(1000) DEFAULT NULL,
   `tele` varchar(20) DEFAULT NULL,
-  `email` varchar(1000) DEFAULT NULL
+  `email` varchar(1000) DEFAULT NULL,
+  `image` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `client`
+--
+
+INSERT INTO `client` (`id`, `nom`, `prenom`, `adr`, `tele`, `email`, `image`) VALUES
+(6, 'belcaida', 'haitam', 'Ipsa et illo eum ni', '0766032618', 'belcaida@gmail.com', './image/product/haitam_pic.jpg');
 
 -- --------------------------------------------------------
 
@@ -102,9 +119,16 @@ CREATE TABLE `client` (
 
 CREATE TABLE `commande` (
   `num_com` varchar(50) NOT NULL,
-  `date_com` date DEFAULT NULL,
+  `date_com` varchar(50) DEFAULT NULL,
   `id_cli` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `commande`
+--
+
+INSERT INTO `commande` (`num_com`, `date_com`, `id_cli`) VALUES
+('1234', '21-12-2022', 6);
 
 -- --------------------------------------------------------
 
@@ -115,7 +139,8 @@ CREATE TABLE `commande` (
 CREATE TABLE `contient_pr` (
   `num_pr` varchar(100) NOT NULL,
   `num_com` varchar(50) NOT NULL,
-  `qte_pr` int(11) DEFAULT NULL
+  `qte_pr` int(11) DEFAULT NULL,
+  `prix_vente` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -130,6 +155,14 @@ CREATE TABLE `est_compose` (
   `qte_achete` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `est_compose`
+--
+
+INSERT INTO `est_compose` (`num_app`, `num_pr`, `qte_achete`) VALUES
+('12345', '1111', 20),
+('12345', '123', 10);
+
 -- --------------------------------------------------------
 
 --
@@ -142,8 +175,17 @@ CREATE TABLE `fournisseur` (
   `prenom` varchar(100) DEFAULT NULL,
   `adr` varchar(1000) DEFAULT NULL,
   `tele` varchar(20) DEFAULT NULL,
-  `email` varchar(1000) DEFAULT NULL
+  `email` varchar(1000) DEFAULT NULL,
+  `image` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `fournisseur`
+--
+
+INSERT INTO `fournisseur` (`id`, `nom`, `prenom`, `adr`, `tele`, `email`, `image`) VALUES
+(3, 'belcaida', 'haitam', 'sidi qaceme', '0766032618', 'belcaida@gmail.com', './image/supplier/haitam_pic.jpg'),
+(4, 'med-amine', 'benhima', 'safi', '0766032618', 'root@gmail.com', './image/supplier/nike.png');
 
 -- --------------------------------------------------------
 
@@ -155,18 +197,19 @@ CREATE TABLE `marque` (
   `id_marque` int(11) NOT NULL,
   `nom_marque` varchar(1000) NOT NULL,
   `description_marque` varchar(5000) NOT NULL,
-  `image` varchar(10000) NOT NULL
+  `br_image` varchar(10000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `marque`
 --
 
-INSERT INTO `marque` (`id_marque`, `nom_marque`, `description_marque`, `image`) VALUES
+INSERT INTO `marque` (`id_marque`, `nom_marque`, `description_marque`, `br_image`) VALUES
 (17, 'Adidas', 'trois bandes', './image/adidas.png'),
 (18, 'Nike', 'nike brand', './image/nike.png'),
 (19, 'haitam brand', 'best brand in the world', './image/haitam_pic.jpg'),
-(20, 'Puma', 'puma brand', './image/Puma.jpg');
+(20, 'Puma', 'puma brand', './image/Puma.jpg'),
+(21, 'Apple', 'Apple brand', './image/apple.png');
 
 -- --------------------------------------------------------
 
@@ -179,11 +222,20 @@ CREATE TABLE `produit` (
   `id_cat` int(11) DEFAULT NULL,
   `id_marque` int(11) NOT NULL,
   `lib_pr` varchar(10000) DEFAULT NULL,
+  `desc_pr` varchar(1000) NOT NULL,
   `prix_uni` float DEFAULT NULL,
-  `prix_vente` float DEFAULT NULL,
   `prix_achat` float DEFAULT NULL,
-  `qte_stock` int(11) DEFAULT NULL
+  `qte_stock` int(11) DEFAULT NULL,
+  `pr_image` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `produit`
+--
+
+INSERT INTO `produit` (`num_pr`, `id_cat`, `id_marque`, `lib_pr`, `desc_pr`, `prix_uni`, `prix_achat`, `qte_stock`, `pr_image`) VALUES
+('1111', 6, 21, 'mac ', 'rtyhjgjmmmmmmm', 100, 200, 480, './image/product/mac_pc.jpg'),
+('123', 4, 21, 'iphone 14', 'rtyhjgjmmmmmmm', 200, 100, 15, './image/product/apple_phone.jpg');
 
 --
 -- Indexes for dumped tables
@@ -269,25 +321,25 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `fournisseur`
 --
 ALTER TABLE `fournisseur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `marque`
 --
 ALTER TABLE `marque`
-  MODIFY `id_marque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_marque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables

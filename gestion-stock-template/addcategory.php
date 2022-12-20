@@ -8,7 +8,7 @@ session_start();
     extract($_POST);
     $filename = $_FILES["image"]["name"];
     $tempname = $_FILES["image"]["tmp_name"];
-    $image = "./image/" . $filename;
+    $image = "./image/category/" . $filename;
     if (move_uploaded_file($tempname, $image)) {
       $cat = new Categorie($lib_cat, $desc_cat, $image);
       $cat->ajouterCat();

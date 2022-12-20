@@ -9,7 +9,7 @@ if (isset($_POST['ajouter'])) {
     extract($_POST);
     $filename = $_FILES["image"]["name"];
     $tempname = $_FILES["image"]["tmp_name"];
-    $folder = "./image/" . $filename;
+    $folder = "./image/admin/" . $filename;
 
     if (move_uploaded_file($tempname, $folder)) {
         $nv_admin = new Admin($nom, $prenom, $adr, $tele, $email, $folder, $mdp);
