@@ -3,16 +3,16 @@ session_start();
 ?>
 <?php if (isset($_SESSION['admin'])): ?>
 <?php
-  require_once("../php/Class/Client.php");
+  require_once("../php/Class/Supplier.php");
   if (isset($_POST['submit'])) {
     extract($_POST);
     $filename = $_FILES["image"]["name"];
     $tempname = $_FILES["image"]["tmp_name"];
-    $image = "./image/client/" . $filename;
+    $image = "./image/supplier/" . $filename;
 
     if (move_uploaded_file($tempname, $image)) {
-      $client = new Client($nom, $prenom, $adr, $tele, $email, $image);
-      $client->Ajouter("client");
+      $Supplier = new Supplier($nom, $prenom, $adr, $tele, $email, $image);
+      $Supplier->Ajouter("fournisseur");
     } else {
       exit("<h3> Failed to upload image!</h3>");
     }
@@ -59,7 +59,6 @@ session_start();
       }
     }
   </style>
-
 </head>
 
 <body>
@@ -74,23 +73,23 @@ session_start();
       <div class="content">
         <div class="page-header">
           <div class="page-title">
-            <h4>Customer</h4>
-            <h6>Add Customer</h6>
+            <h4>Supplier Management</h4>
+            <h6>Add/Update Customer</h6>
           </div>
         </div>
 
         <div class="card">
           <div class="card-body">
-            <form class="row" method="post" action="addcustomer.php" enctype="multipart/form-data">
+            <form class="row" method="post" action="addsupplier.php" enctype="multipart/form-data">
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
-                  <label>Customer Last Name</label>
+                  <label>supplier Last Name</label>
                   <input type="text" name="prenom" />
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
-                  <label>Customer First Name</label>
+                  <label>supplier First Name</label>
                   <input type="text" name="nom" />
                 </div>
               </div>
@@ -126,7 +125,7 @@ session_start();
               </div>
               <div class="col-lg-12">
                 <button class="btn btn-submit me-2" name="submit">Add</button>
-                <a href="customerlist.php" class="btn btn-cancel">Cancel</a>
+                <a href="supplierlist.php" class="btn btn-cancel">Cancel</a>
               </div>
             </form>
           </div>
@@ -152,16 +151,6 @@ session_start();
   <script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
 
   <script src="assets/js/script.js"></script>
-</body>
-
-</html>
-<script src="assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
-<script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
-
-<script src="assets/js/script.js"></script>
-</body>
-
-</html>
 </body>
 
 </html>

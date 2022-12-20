@@ -33,5 +33,8 @@ class Product {
         Dao::editPr($num_pr, $id_cat, $id_marque, $lib_pr, $desc_pr, $prix_uni, $prix_achat, $qte_stock, $image, $new_num_pr);
     }
 
+    public static function editQty($num_pr, $qte_achete) {
+        Dao::editQty($num_pr, $qte_achete);
+    }
 
 }

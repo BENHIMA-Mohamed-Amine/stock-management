@@ -1,15 +1,15 @@
-﻿<?php
+<?php
 session_start();
 ?>
 <?php if (isset($_SESSION['admin'])): ?>
 <?php
-  require_once("../php/Class/Client.php");
-  require_once("../php/Class/Product.php");
-  if (isset($_GET['id'])) {
+  require_once("../php/Class/Purchase.php");
+  if (isset($_GET["num_app"])) {
     extract($_GET);
-    Client::supprimer($id, "client");
+    Purchase::deletePur($num_app);
   }
-  $clients = Client::afficher("client");
+  $purchases = Purchase::displayAllPur();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,11 +28,11 @@ session_start();
 
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 
+  <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
+
   <link rel="stylesheet" href="assets/css/animate.css" />
 
   <link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css" />
-
-  <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
 
   <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css" />
 
@@ -54,12 +54,14 @@ session_start();
       <div class="content">
         <div class="page-header">
           <div class="page-title">
-            <h4>Customer List</h4>
-            <h6>Manage your Customers</h6>
+            <h4>PURCHASE LIST</h4>
+            <h6>Manage your purchases</h6>
           </div>
           <div class="page-btn">
-            <a href="addcustomer.php" class="btn btn-added"><img src="assets/img/icons/plus.svg" alt="img" />Add
-              Customer</a>
+            <a href="addpurchase.php" class="btn btn-added">
+              <img src="assets/img/icons/plus.svg" alt="img" />Add New
+              Purchases
+            </a>
           </div>
         </div>
 
@@ -68,48 +70,35 @@ session_start();
             <div class="table-top">
               <div class="search-set">
                 <div class="search-input">
-                  <a class="btn btn-searchset"><img src="assets/img/icons/search-white.svg" alt="img" /></a>
+                  <a class="btn btn-searchset">
+                    <img src="assets/img/icons/search-white.svg" alt="img" />
+                  </a>
                 </div>
               </div>
             </div>
+
             <div class="table-responsive">
               <table class="table datanew">
                 <thead>
                   <tr>
-                    <th>Customer Name</th>
-                    <th>address</th>
-                    <th>Phone</th>
-                    <th>email</th>
+                    <th>Supplier Name</th>
+                    <th>Reference</th>
+                    <th>Date</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($clients as $cl): ?>
-                  <td class="productimgname">
-                    <a href="javascript:void(0);" class="product-img">
-                      <img src="<?= $cl['image'] ?>" alt="product" />
-                    </a>
-                    <a href="javascript:void(0);">
-                      <?= $cl['nom'] . " " . $cl['prenom']; ?>
-                    </a>
-                  </td>
-                  <td>
-                    <?= $cl['adr'] ?>
-                  </td>
-                  <td>
-                    <?= $cl['tele'] ?>
-                  </td>
-                  <td>
-                    <?= $cl['email'] ?>
-                  </td>
-                  <td>
-                    <a class="me-3" href="editcustomer.php?id=<?= $cl['id'] ?>">
-                      <img src="assets/img/icons/edit.svg" alt="img" />
-                    </a>
-                    <a class="me-3" href="customerlist.php?id=<?= $cl['id'] ?>">
-                      <img src="assets/img/icons/delete.svg" alt="img" />
-                    </a>
-                  </td>
+                  <?php foreach ($purchases as $pur): ?>
+                  <tr>
+                    <td class="text-bolds"><?= $pur['nom'] . " " . $pur['prenom']; ?></td>
+                    <td><?= $pur['num_app']; ?></td>
+                    <td><?= $pur['date_app']; ?></td>
+                    <td>
+                      <a class="me-3" href="./purchaselist.php?num_app=<?= $pur['num_app']; ?>">
+                        <img src="assets/img/icons/delete.svg" alt="img" />
+                      </a>
+                    </td>
+                  </tr>
                   <?php endforeach ?>
                 </tbody>
               </table>
@@ -120,8 +109,6 @@ session_start();
     </div>
   </div>
 
-
-  <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script src="assets/js/jquery-3.6.0.min.js"></script>
 
   <script src="assets/js/feather.min.js"></script>
@@ -133,10 +120,10 @@ session_start();
 
   <script src="assets/js/bootstrap.bundle.min.js"></script>
 
-  <script src="assets/plugins/select2/js/select2.min.js"></script>
-
   <script src="assets/js/moment.min.js"></script>
   <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+
+  <script src="assets/plugins/select2/js/select2.min.js"></script>
 
   <script src="assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
   <script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>

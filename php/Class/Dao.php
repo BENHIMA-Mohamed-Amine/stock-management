@@ -12,17 +12,17 @@ class Dao {
     }
 
     // ajouter un nouveau Client ou Fournisseur
-    public static function ajouterPersonne($nom, $prenom, $adr, $tele, $email, $nom_de_class) {
+    public static function ajouterPersonne($nom, $prenom, $adr, $tele, $email, $image, $nom_de_class) {
         $pdo = Dao::getPDO();
-        $sql = "INSERT INTO {$nom_de_class}(nom,prenom,adr,tele,email) VALUES (?,?,?,?,?)";
-        $pdo->prepare($sql)->execute([$nom, $prenom, $adr, $tele, $email]);
+        $sql = "INSERT INTO {$nom_de_class}(nom,prenom,adr,tele,email, image) VALUES (?,?,?,?,?,?)";
+        $pdo->prepare($sql)->execute([$nom, $prenom, $adr, $tele, $email, $image]);
     }
 
     // Modifier un Client ou Fournisseur
-    public static function modifierPersonne($id, $nom, $prenom, $adr, $tele, $email, $nom_de_class) {
+    public static function modifierPersonne($id, $nom, $prenom, $adr, $tele, $email, $image, $nom_de_class) {
         $pdo = Dao::getPDO();
-        $sql = "UPDATE {$nom_de_class} SET nom=?, prenom=?, adr=?, tele=?, email=? WHERE id=?";
-        $pdo->prepare($sql)->execute([$nom, $prenom, $adr, $tele, $email, $id]);
+        $sql = "UPDATE {$nom_de_class} SET nom=?, prenom=?, adr=?, tele=?, email=?, image=? WHERE id=?";
+        $pdo->prepare($sql)->execute([$nom, $prenom, $adr, $tele, $email, $image, $id]);
         // print_r($pdo);
     }
 
@@ -191,7 +191,7 @@ class Dao {
     }
     public static function displayPr($num_pr) {
         $pdo = Dao::getPDO();
-        $sql = "SELECT * FROM (produit NATURAL JOIN categorie) NATURAL JOIN marque; WHERE num_pr=?";
+        $sql = "SELECT * FROM (produit NATURAL JOIN categorie) NATURAL JOIN marque WHERE num_pr=?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$num_pr]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -201,5 +201,74 @@ class Dao {
         $pdo = Dao::getPDO();
         $sql = "UPDATE produit SET id_cat=?, id_marque=?, lib_pr =?, desc_pr=?, prix_uni=?, prix_achat=?, qte_stock=?, pr_image=?, num_pr=? WHERE num_pr=?";
         $pdo->prepare($sql)->execute([$id_cat, $id_marque, $lib_pr, $desc_pr, $prix_uni, $prix_achat, $qte_stock, $image, $new_num_pr, $num_pr]);
+    }
+
+    // bach n3ref wach deja m inserya had purchase ola la
+    public static function isPurchase($num_app) {
+        $pdo = Dao::getPDO();
+        $sql = "SELECT * FROM approvisionnement WHERE num_app = ?;";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$num_app]);
+        $purchase = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($purchase === false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public static function addPurchase($num_app, $date_app, $id, $desc_app) {
+        $pdo = Dao::getPDO();
+        $sql = "INSERT INTO approvisionnement VALUES (?,?,?,?)";
+        $pdo->prepare($sql)->execute([$num_app, $date_app, $id, $desc_app]);
+    }
+
+    public static function add_pr_of_pruchase($num_app, $num_pr, $qte_achete) {
+        $pdo = Dao::getPDO();
+        $sql = "INSERT INTO est_compose VALUES (?,?,?)";
+        $pdo->prepare($sql)->execute([$num_app, $num_pr, $qte_achete]);
+    }
+
+    public static function editQty($num_pr, $qte_achete) {
+        $res = Dao::displayPr($num_pr);
+        $old_qty = $res['qte_stock'];
+        $pdo = Dao::getPDO();
+
+        $sql = "UPDATE produit SET qte_stock=?+? WHERE num_pr=?";
+        $pdo->prepare($sql)->execute([$old_qty, $qte_achete, $num_pr]);
+    }
+
+    public static function displayPur($num_app) {
+        $pdo = Dao::getPDO();
+        $sql = "SELECT * FROM approvisionnement  WHERE num_app=?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$num_app]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function displayPrPurchase($num_app) {
+        $pdo = Dao::getPDO();
+        $sql = "SELECT * FROM produit NATURAL JOIN est_compose WHERE num_app=?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$num_app]);
+        return $stmt->fetchAll();
+    }
+
+    public static function deletePrPurchase($num_pr) {
+        $pdo = Dao::getPDO();
+        $sql = "DELETE FROM est_compose WHERE num_pr  = ?";
+        $pdo->prepare($sql)->execute([$num_pr]);
+    }
+
+    public static function displayAllPur() {
+        $pdo = Dao::getPDO();
+        $sql = "SELECT * FROM approvisionnement NATURAL JOIN fournisseur WHERE id_four = id;";
+        return $pdo->query($sql)->fetchAll();
+    }
+
+    public static function deletePur($num_app) {
+        $pdo = Dao::getPDO();
+        $sql = "DELETE FROM approvisionnement WHERE num_app  = ?";
+        $pdo->prepare($sql)->execute([$num_app]);
     }
 }

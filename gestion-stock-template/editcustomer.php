@@ -4,20 +4,41 @@ session_start();
 <?php if (isset($_SESSION['admin'])): ?>
 <?php
   require_once("../php/Class/Client.php");
-  if (isset($_POST['submit'])) {
+
+  // echo ("<pre>");
+  // print_r($_POST);
+  if (isset($_POST['edit'])) {
     extract($_POST);
-    $filename = $_FILES["image"]["name"];
-    $tempname = $_FILES["image"]["tmp_name"];
-    $image = "./image/client/" . $filename;
-
-    if (move_uploaded_file($tempname, $image)) {
-      $client = new Client($nom, $prenom, $adr, $tele, $email, $image);
-      $client->Ajouter("client");
+    // kanchof wach khona ma chnageach image ila oui kanakhod path l9dim dialha o kansefto f modifiermarque 
+    // sinon kansupprimer l9dima mn ne3d ka n uploadi jdida o kanghewet 3la modifier marque 
+    if ($_FILES["image"]["name"] === "") {
+      Client::modifier($id, $nom, $prenom, $adr, $tele, $email, $old_image, "client");
     } else {
-      exit("<h3> Failed to upload image!</h3>");
-    }
+      $filename = $_FILES["image"]["name"];
+      $tempname = $_FILES["image"]["tmp_name"];
+      $image = "./image/product/" . $filename;
 
+      // var_dump($image);
+      // echo "<pre>";
+      // var_dump($tempname);
+
+      if (move_uploaded_file($tempname, $image)) {
+        if (unlink($old_image)) {
+          Client::modifier($id, $nom, $prenom, $adr, $tele, $email, $image, "client");
+        } else {
+          exit("<h3> Failed to delete image!</h3>");
+        }
+      } else {
+        exit("<h3> Failed to upload image!</h3>");
+      }
+    }
+    $client = Client::affciherPersonne($id, "client");
   }
+  if (isset($_GET['id'])) {
+    extract($_GET);
+    $client = Client::affciherPersonne($id, "client");
+  }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +80,6 @@ session_start();
       }
     }
   </style>
-
 </head>
 
 <body>
@@ -74,42 +94,43 @@ session_start();
       <div class="content">
         <div class="page-header">
           <div class="page-title">
-            <h4>Customer</h4>
-            <h6>Add Customer</h6>
+            <h4>Edit Customer</h4>
+            <h6>Edit Customer</h6>
           </div>
         </div>
 
         <div class="card">
           <div class="card-body">
-            <form class="row" method="post" action="addcustomer.php" enctype="multipart/form-data">
+            <form class="row" method="post" action="editcustomer.php" enctype="multipart/form-data">
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                   <label>Customer Last Name</label>
-                  <input type="text" name="prenom" />
+                  <input type="text" name="nom" value="<?= $client['nom']; ?>" />
+                  <input type="hidden" name="id" value="<?= $client['id']; ?>" />
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                   <label>Customer First Name</label>
-                  <input type="text" name="nom" />
+                  <input type="text" name="prenom" value="<?= $client['prenom']; ?>" />
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                   <label>Email</label>
-                  <input type="text" name="email" />
+                  <input type="text" name="email" value="<?= $client['email']; ?>" />
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                   <label>Phone</label>
-                  <input type="text" name="tele" />
+                  <input type="text" name="tele" value="<?= $client['tele']; ?>" />
                 </div>
               </div>
               <div class="col-lg-9 col-12">
                 <div class="form-group">
                   <label>Address</label>
-                  <input type="text" name="adr" />
+                  <input type="text" name="adr" value="<?= $client['adr']; ?>" />
                 </div>
               </div>
               <div class="col-lg-12">
@@ -117,6 +138,7 @@ session_start();
                   <label> Avatar</label>
                   <div class="image-upload">
                     <input type="file" name="image" />
+                    <input type="hidden" name="old_image" value="<?= $client['image']; ?>" />
                     <div class="image-uploads">
                       <img src="assets/img/icons/upload.svg" alt="img" />
                       <h4>Drag and drop a file to upload</h4>
@@ -125,7 +147,7 @@ session_start();
                 </div>
               </div>
               <div class="col-lg-12">
-                <button class="btn btn-submit me-2" name="submit">Add</button>
+                <button class="btn btn-submit me-2" type="submit" name="edit">Update</button>
                 <a href="customerlist.php" class="btn btn-cancel">Cancel</a>
               </div>
             </form>
@@ -152,16 +174,6 @@ session_start();
   <script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
 
   <script src="assets/js/script.js"></script>
-</body>
-
-</html>
-<script src="assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
-<script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
-
-<script src="assets/js/script.js"></script>
-</body>
-
-</html>
 </body>
 
 </html>

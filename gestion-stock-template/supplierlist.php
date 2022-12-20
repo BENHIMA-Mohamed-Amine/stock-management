@@ -3,13 +3,13 @@ session_start();
 ?>
 <?php if (isset($_SESSION['admin'])): ?>
 <?php
-  require_once("../php/Class/Client.php");
+  require_once("../php/Class/Supplier.php");
   require_once("../php/Class/Product.php");
   if (isset($_GET['id'])) {
     extract($_GET);
-    Client::supprimer($id, "client");
+    Supplier::supprimer($id, "fournisseur");
   }
-  $clients = Client::afficher("client");
+  $suppliers = Supplier::afficher("fournisseur");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,12 +54,12 @@ session_start();
       <div class="content">
         <div class="page-header">
           <div class="page-title">
-            <h4>Customer List</h4>
-            <h6>Manage your Customers</h6>
+            <h4>Supplier List</h4>
+            <h6>Manage your Supplier</h6>
           </div>
           <div class="page-btn">
-            <a href="addcustomer.php" class="btn btn-added"><img src="assets/img/icons/plus.svg" alt="img" />Add
-              Customer</a>
+            <a href="addsupplier.php" class="btn btn-added"><img src="assets/img/icons/plus.svg" alt="img" />Add
+              Supplier</a>
           </div>
         </div>
 
@@ -84,32 +84,34 @@ session_start();
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($clients as $cl): ?>
-                  <td class="productimgname">
-                    <a href="javascript:void(0);" class="product-img">
-                      <img src="<?= $cl['image'] ?>" alt="product" />
-                    </a>
-                    <a href="javascript:void(0);">
-                      <?= $cl['nom'] . " " . $cl['prenom']; ?>
-                    </a>
-                  </td>
-                  <td>
-                    <?= $cl['adr'] ?>
-                  </td>
-                  <td>
-                    <?= $cl['tele'] ?>
-                  </td>
-                  <td>
-                    <?= $cl['email'] ?>
-                  </td>
-                  <td>
-                    <a class="me-3" href="editcustomer.php?id=<?= $cl['id'] ?>">
-                      <img src="assets/img/icons/edit.svg" alt="img" />
-                    </a>
-                    <a class="me-3" href="customerlist.php?id=<?= $cl['id'] ?>">
-                      <img src="assets/img/icons/delete.svg" alt="img" />
-                    </a>
-                  </td>
+                  <?php foreach ($suppliers as $supplier): ?>
+                  <tr>
+                    <td class="productimgname">
+                      <a href="javascript:void(0);" class="product-img">
+                        <img src="<?= $supplier['image'] ?>" alt="product" />
+                      </a>
+                      <a href="javascript:void(0);">
+                        <?= $supplier['nom'] . " " . $supplier['prenom']; ?>
+                      </a>
+                    </td>
+                    <td>
+                      <?= $supplier['adr'] ?>
+                    </td>
+                    <td>
+                      <?= $supplier['tele'] ?>
+                    </td>
+                    <td>
+                      <?= $supplier['email'] ?>
+                    </td>
+                    <td>
+                      <a class="me-3" href="editsupplier.php?id=<?= $supplier['id'] ?>">
+                        <img src="assets/img/icons/edit.svg" alt="img" />
+                      </a>
+                      <a class="me-3" href="supplierlist.php?id=<?= $supplier['id'] ?>">
+                        <img src="assets/img/icons/delete.svg" alt="img" />
+                      </a>
+                    </td>
+                  </tr>
                   <?php endforeach ?>
                 </tbody>
               </table>

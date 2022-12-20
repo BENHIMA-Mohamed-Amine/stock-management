@@ -39,13 +39,13 @@ class Personne {
 
     // ajouter un nouveau Client ou Fournisseur
     public function Ajouter($nom_de_class) {
-        Dao::ajouterPersonne($this->nom, $this->prenom, $this->adr, $this->tele, $this->email, $nom_de_class);
+        Dao::ajouterPersonne($this->nom, $this->prenom, $this->adr, $this->tele, $this->email, $this->image, $nom_de_class);
     }
 
 
     // Modifier un Client ou Fournisseur
-    public static function modifier($id, $nom, $prenom, $adr, $tele, $email, $nom_de_class) {
-        Dao::modifierPersonne($id, $nom, $prenom, $adr, $tele, $email, $nom_de_class);
+    public static function modifier($id, $nom, $prenom, $adr, $tele, $email, $image, $nom_de_class) {
+        Dao::modifierPersonne($id, $nom, $prenom, $adr, $tele, $email, $image, $nom_de_class);
     }
 
     // Supprimer un Client ou Fournisseur

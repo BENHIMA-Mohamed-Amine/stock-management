@@ -3,21 +3,42 @@ session_start();
 ?>
 <?php if (isset($_SESSION['admin'])): ?>
 <?php
-  require_once("../php/Class/Client.php");
-  if (isset($_POST['submit'])) {
+  require_once("../php/Class/Supplier.php");
+
+  // echo ("<pre>");
+  // print_r($_POST);
+  if (isset($_POST['edit'])) {
     extract($_POST);
-    $filename = $_FILES["image"]["name"];
-    $tempname = $_FILES["image"]["tmp_name"];
-    $image = "./image/client/" . $filename;
-
-    if (move_uploaded_file($tempname, $image)) {
-      $client = new Client($nom, $prenom, $adr, $tele, $email, $image);
-      $client->Ajouter("client");
+    // kanchof wach khona ma chnageach image ila oui kanakhod path l9dim dialha o kansefto f modifiermarque 
+    // sinon kansupprimer l9dima mn ne3d ka n uploadi jdida o kanghewet 3la modifier marque 
+    if ($_FILES["image"]["name"] === "") {
+      Supplier::modifier($id, $nom, $prenom, $adr, $tele, $email, $old_image, "fournisseur");
     } else {
-      exit("<h3> Failed to upload image!</h3>");
-    }
+      $filename = $_FILES["image"]["name"];
+      $tempname = $_FILES["image"]["tmp_name"];
+      $image = "./image/supplier/" . $filename;
 
+      // var_dump($image);
+      // echo "<pre>";
+      // var_dump($tempname);
+
+      if (move_uploaded_file($tempname, $image)) {
+        if (unlink($old_image)) {
+          Supplier::modifier($id, $nom, $prenom, $adr, $tele, $email, $image, "fournisseur");
+        } else {
+          exit("<h3> Failed to delete image!</h3>");
+        }
+      } else {
+        exit("<h3> Failed to upload image!</h3>");
+      }
+    }
+    $supplier = Supplier::affciherPersonne($id, "fournisseur");
   }
+  if (isset($_GET['id'])) {
+    extract($_GET);
+    $supplier = Supplier::affciherPersonne($id, "fournisseur");
+  }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,8 +80,8 @@ session_start();
       }
     }
   </style>
-
 </head>
+
 
 <body>
   <div id="global-loader">
@@ -74,42 +95,43 @@ session_start();
       <div class="content">
         <div class="page-header">
           <div class="page-title">
-            <h4>Customer</h4>
-            <h6>Add Customer</h6>
+            <h4>Supplier Management</h4>
+            <h6>Edit/Update Customer</h6>
           </div>
         </div>
 
         <div class="card">
           <div class="card-body">
-            <form class="row" method="post" action="addcustomer.php" enctype="multipart/form-data">
+            <form class="row" method="post" action="editsupplier.php" enctype="multipart/form-data">
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                   <label>Customer Last Name</label>
-                  <input type="text" name="prenom" />
+                  <input type="text" name="nom" value="<?= $supplier['nom']; ?>" />
+                  <input type="hidden" name="id" value="<?= $supplier['id']; ?>" />
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                   <label>Customer First Name</label>
-                  <input type="text" name="nom" />
+                  <input type="text" name="prenom" value="<?= $supplier['prenom']; ?>" />
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                   <label>Email</label>
-                  <input type="text" name="email" />
+                  <input type="text" name="email" value="<?= $supplier['email']; ?>" />
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
                   <label>Phone</label>
-                  <input type="text" name="tele" />
+                  <input type="text" name="tele" value="<?= $supplier['tele']; ?>" />
                 </div>
               </div>
               <div class="col-lg-9 col-12">
                 <div class="form-group">
                   <label>Address</label>
-                  <input type="text" name="adr" />
+                  <input type="text" name="adr" value="<?= $supplier['adr']; ?>" />
                 </div>
               </div>
               <div class="col-lg-12">
@@ -117,6 +139,7 @@ session_start();
                   <label> Avatar</label>
                   <div class="image-upload">
                     <input type="file" name="image" />
+                    <input type="hidden" name="old_image" value="<?= $supplier['image']; ?>" />
                     <div class="image-uploads">
                       <img src="assets/img/icons/upload.svg" alt="img" />
                       <h4>Drag and drop a file to upload</h4>
@@ -125,8 +148,8 @@ session_start();
                 </div>
               </div>
               <div class="col-lg-12">
-                <button class="btn btn-submit me-2" name="submit">Add</button>
-                <a href="customerlist.php" class="btn btn-cancel">Cancel</a>
+                <button class="btn btn-submit me-2" type="submit" name="edit">Update</button>
+                <a href="supplierlist.php" class="btn btn-cancel">Cancel</a>
               </div>
             </form>
           </div>
@@ -152,16 +175,6 @@ session_start();
   <script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
 
   <script src="assets/js/script.js"></script>
-</body>
-
-</html>
-<script src="assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
-<script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
-
-<script src="assets/js/script.js"></script>
-</body>
-
-</html>
 </body>
 
 </html>
