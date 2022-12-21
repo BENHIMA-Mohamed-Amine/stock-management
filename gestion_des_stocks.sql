@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2022 at 12:51 AM
+-- Generation Time: Dec 21, 2022 at 10:35 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -43,9 +43,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `nom`, `prenom`, `adr`, `tele`, `email`, `image`, `mdp`) VALUES
-(2, 'root', '', '', '', 'root@gmail.com', '', 'root'),
-(6, 'belcaida', 'haitam', 'Laboriosam exercita', 'Mollit sed explicabo', 'test@gmail.com', './image/WIN_20221125_16_22_22_Pro.jpg', 'test'),
-(7, 'belcaida', 'haitam', 'chi 7aja', '0766032618', 'belcaida', './image/haitam_pic.jpg', '0000');
+(8, '', 'haitam', 'safi', '0766032618', 'belcaida', './image/admin/haitam_pic.jpg', '0000');
 
 -- --------------------------------------------------------
 
@@ -59,13 +57,6 @@ CREATE TABLE `approvisionnement` (
   `id_four` int(11) DEFAULT NULL,
   `desc_app` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `approvisionnement`
---
-
-INSERT INTO `approvisionnement` (`num_app`, `date_app`, `id_four`, `desc_app`) VALUES
-('12345', '20-12-2022', 4, 'uyuhl');
 
 -- --------------------------------------------------------
 
@@ -85,8 +76,9 @@ CREATE TABLE `categorie` (
 --
 
 INSERT INTO `categorie` (`id_cat`, `lib_cat`, `desc_cat`, `cat_image`) VALUES
-(4, 'Apple phones', 'apple phones only', './image/apple_phone.jpg'),
-(6, 'PC', 'mac pc', './image/mac_pc.jpg');
+(7, 'Laptop ', 'Laptop category ', './image/category/laptop.jpg'),
+(8, 'Phone', 'Phone category ', './image/category/phone.jpg'),
+(9, 'Tablet', 'Tablet category', './image/category/teblet.jpg');
 
 -- --------------------------------------------------------
 
@@ -109,7 +101,7 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`id`, `nom`, `prenom`, `adr`, `tele`, `email`, `image`) VALUES
-(6, 'belcaida', 'haitam', 'Ipsa et illo eum ni', '0766032618', 'belcaida@gmail.com', './image/product/haitam_pic.jpg');
+(7, 'haitham', 'belcaida', 'safi', '0766032618', 'belcaida@gmail.com', './image/client/haitam_pic.jpg');
 
 -- --------------------------------------------------------
 
@@ -122,13 +114,6 @@ CREATE TABLE `commande` (
   `date_com` varchar(50) DEFAULT NULL,
   `id_cli` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `commande`
---
-
-INSERT INTO `commande` (`num_com`, `date_com`, `id_cli`) VALUES
-('1234', '21-12-2022', 6);
 
 -- --------------------------------------------------------
 
@@ -155,14 +140,6 @@ CREATE TABLE `est_compose` (
   `qte_achete` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `est_compose`
---
-
-INSERT INTO `est_compose` (`num_app`, `num_pr`, `qte_achete`) VALUES
-('12345', '1111', 20),
-('12345', '123', 10);
-
 -- --------------------------------------------------------
 
 --
@@ -184,8 +161,7 @@ CREATE TABLE `fournisseur` (
 --
 
 INSERT INTO `fournisseur` (`id`, `nom`, `prenom`, `adr`, `tele`, `email`, `image`) VALUES
-(3, 'belcaida', 'haitam', 'sidi qaceme', '0766032618', 'belcaida@gmail.com', './image/supplier/haitam_pic.jpg'),
-(4, 'med-amine', 'benhima', 'safi', '0766032618', 'root@gmail.com', './image/supplier/nike.png');
+(5, 'med-amine', 'benhima', 'safi', '0766032618', 'test@gmail.com', './image/supplier/haitam_pic.jpg');
 
 -- --------------------------------------------------------
 
@@ -205,11 +181,8 @@ CREATE TABLE `marque` (
 --
 
 INSERT INTO `marque` (`id_marque`, `nom_marque`, `description_marque`, `br_image`) VALUES
-(17, 'Adidas', 'trois bandes', './image/adidas.png'),
-(18, 'Nike', 'nike brand', './image/nike.png'),
-(19, 'haitam brand', 'best brand in the world', './image/haitam_pic.jpg'),
-(20, 'Puma', 'puma brand', './image/Puma.jpg'),
-(21, 'Apple', 'Apple brand', './image/apple.png');
+(22, 'Apple', 'apple brand', './image/brand/apple.png'),
+(23, 'Samsung ', 'Samsung brand', './image/brand/samsung.png');
 
 -- --------------------------------------------------------
 
@@ -234,8 +207,7 @@ CREATE TABLE `produit` (
 --
 
 INSERT INTO `produit` (`num_pr`, `id_cat`, `id_marque`, `lib_pr`, `desc_pr`, `prix_uni`, `prix_achat`, `qte_stock`, `pr_image`) VALUES
-('1111', 6, 21, 'mac ', 'rtyhjgjmmmmmmm', 100, 200, 480, './image/product/mac_pc.jpg'),
-('123', 4, 21, 'iphone 14', 'rtyhjgjmmmmmmm', 200, 100, 15, './image/product/apple_phone.jpg');
+('123', 8, 22, 'iphone 14', 'iphone 14 128GB', 12000, 10000, 5, './image/product/iphone_14.jpg');
 
 --
 -- Indexes for dumped tables
@@ -315,31 +287,31 @@ ALTER TABLE `produit`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `fournisseur`
 --
 ALTER TABLE `fournisseur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `marque`
 --
 ALTER TABLE `marque`
-  MODIFY `id_marque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_marque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Constraints for dumped tables
