@@ -371,4 +371,12 @@ GROUP BY num_com;";
         $sql = "DELETE FROM Commande WHERE num_com  = ?";
         $pdo->prepare($sql)->execute([$num_com]);
     }
+
+    public static function displaySaleWithPr($num_com) {
+        $pdo = Dao::getPDO();
+        $sql = "SELECT * FROM commande NATURAL JOIN contient_pr NATURAL JOIN produit NATURAL JOIN client WHERE num_com=? and id_cli = id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$num_com]);
+        return $stmt->fetchAll();
+    }
 }

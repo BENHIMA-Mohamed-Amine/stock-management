@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2022 at 10:35 AM
+-- Generation Time: Dec 23, 2022 at 11:54 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -43,7 +43,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `nom`, `prenom`, `adr`, `tele`, `email`, `image`, `mdp`) VALUES
-(8, '', 'haitam', 'safi', '0766032618', 'belcaida', './image/admin/haitam_pic.jpg', '0000');
+(12, '', 'Haitam', 'safi ', '0766032618', 'belcaida', './image/admin/haitam_pic.jpg', '0000');
 
 -- --------------------------------------------------------
 
@@ -101,7 +101,8 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`id`, `nom`, `prenom`, `adr`, `tele`, `email`, `image`) VALUES
-(7, 'haitham', 'belcaida', 'safi', '0766032618', 'belcaida@gmail.com', './image/client/haitam_pic.jpg');
+(7, 'haitham', 'belcaida', 'safi', '0766032618', 'belcaida@gmail.com', './image/client/haitam_pic.jpg'),
+(8, 'med-amine', 'benhima', 'safi', '0766032618', 'root@gmail.com', './image/client/pc.jpg');
 
 -- --------------------------------------------------------
 
@@ -115,6 +116,13 @@ CREATE TABLE `commande` (
   `id_cli` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `commande`
+--
+
+INSERT INTO `commande` (`num_com`, `date_com`, `id_cli`) VALUES
+('1234', '23-12-2022', 7);
+
 -- --------------------------------------------------------
 
 --
@@ -127,6 +135,14 @@ CREATE TABLE `contient_pr` (
   `qte_pr` int(11) DEFAULT NULL,
   `prix_vente` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contient_pr`
+--
+
+INSERT INTO `contient_pr` (`num_pr`, `num_com`, `qte_pr`, `prix_vente`) VALUES
+('123', '1234', 5, '10000'),
+('1234', '1234', 1, '10000');
 
 -- --------------------------------------------------------
 
@@ -182,7 +198,8 @@ CREATE TABLE `marque` (
 
 INSERT INTO `marque` (`id_marque`, `nom_marque`, `description_marque`, `br_image`) VALUES
 (22, 'Apple', 'apple brand', './image/brand/apple.png'),
-(23, 'Samsung ', 'Samsung brand', './image/brand/samsung.png');
+(23, 'Samsung ', 'Samsung brand', './image/brand/samsung.png'),
+(24, 'Adidas', 'adidas ', './image/brand/adidas.png');
 
 -- --------------------------------------------------------
 
@@ -207,7 +224,8 @@ CREATE TABLE `produit` (
 --
 
 INSERT INTO `produit` (`num_pr`, `id_cat`, `id_marque`, `lib_pr`, `desc_pr`, `prix_uni`, `prix_achat`, `qte_stock`, `pr_image`) VALUES
-('123', 8, 22, 'iphone 14', 'iphone 14 128GB', 12000, 10000, 5, './image/product/iphone_14.jpg');
+('123', 8, 22, 'iphone 14', 'iphone 14 128GB', 12000, 10000, 20, './image/product/iphone_14.jpg'),
+('1234', 7, 22, 'mac ', 'macbook', 15000, 10000, 14, './image/product/mac_pc.jpg');
 
 --
 -- Indexes for dumped tables
@@ -287,7 +305,7 @@ ALTER TABLE `produit`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `categorie`
@@ -299,7 +317,7 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `fournisseur`
@@ -311,7 +329,7 @@ ALTER TABLE `fournisseur`
 -- AUTO_INCREMENT for table `marque`
 --
 ALTER TABLE `marque`
-  MODIFY `id_marque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_marque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables

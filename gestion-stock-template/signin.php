@@ -60,7 +60,7 @@ if (isset($_POST['conectee'])) {
                                 <img src="assets/img/icons/mail.svg" alt="img">
                                 <?php if (isset($resultat)): ?>
                                 <?php if ($resultat === FAUX_EMAIL): ?>
-                                <p style="color:red; text-align: center">E-mail est invalide</p>
+                                <p style="color:red; text-align: center">Invalid email</p>
                                 <?php endif ?>
                                 <?php endif ?>
                             </div>
@@ -74,7 +74,7 @@ if (isset($_POST['conectee'])) {
                             <div>
                                 <?php if (isset($resultat)): ?>
                                 <?php if ($resultat === FAUX_MDP): ?>
-                                <p style="color:red; text-align: center">Mot de passw est incorrect</p>
+                                <p style="color:red; text-align: center">Incorrect password</p>
                                 <?php endif ?>
                                 <?php endif ?>
                             </div>

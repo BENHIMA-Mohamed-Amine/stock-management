@@ -27,4 +27,8 @@ class Sale {
     public static function deleteSale($num_com) {
         Dao::deleteSale($num_com);
     }
+
+    public static function displaySaleWithPr($num_com) {
+        return Dao::displaySaleWithPr($num_com);
+    }
 }
