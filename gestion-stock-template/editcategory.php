@@ -105,7 +105,7 @@ session_start();
                   <label> Product Image</label>
                   <div class="image-upload">
                     <input type="file" name="image" accept="image/png, image/jpeg" />
-                    <input type="hidden" name="old_image" value="<?= $cat['image'] ?>" />
+                    <input type="hidden" name="old_image" value="<?= $cat['cat_image'] ?>" />
                     <div class="image-uploads">
                       <img src="assets/img/icons/upload.svg" alt="img" />
                       <h4>Drag and drop a file to upload</h4>
