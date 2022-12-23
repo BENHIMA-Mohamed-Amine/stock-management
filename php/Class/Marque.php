@@ -19,7 +19,7 @@ class Marque {
     public static function suppMarque($id_marque) {
         $marque = Marque::afficherMarque($id_marque);
         Dao::supprimerMarque($id_marque);
-        $old_img = $marque['image'];
+        $old_img = $marque['br_image'];
         if (!unlink($old_img)) {
             exit("<h3> Failed to delete image!</h3>");
         }
