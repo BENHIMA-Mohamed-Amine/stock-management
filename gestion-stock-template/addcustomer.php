@@ -4,6 +4,7 @@ session_start();
 <?php if (isset($_SESSION['admin'])): ?>
 <?php
   require_once("../php/Class/Client.php");
+  $active = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "active", 0, 0, 0, 0);
   if (isset($_POST['submit'])) {
     extract($_POST);
     $filename = $_FILES["image"]["name"];

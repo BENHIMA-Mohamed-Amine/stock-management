@@ -8,6 +8,7 @@ session_start();
   require_once("../php/Class/Marque.php");
   $cats = Categorie::afficher("categorie");
   $brands = Marque::afficher("marque");
+  $active = array(0, 0, 0, 0, 0, 0, "active", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
   if (isset($_POST['add'])) {
     extract($_POST);
     $filename = $_FILES["image"]["name"];

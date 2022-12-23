@@ -4,6 +4,7 @@ session_start();
 <?php if (isset($_SESSION['admin'])): ?>
 <?php
     require_once("../php/Class/Admin.php");
+    $active = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "active");
     $admins = Admin::afficher("admin");
     // echo ("<pre>");
     // print_r($admins);

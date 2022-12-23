@@ -4,6 +4,7 @@ session_start();
 <?php if (isset($_SESSION['admin'])): ?>
 <?php
   require("../php/Class/Categorie.php");
+  $active = array(0, 0, 0, "active", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
   if (isset($_GET['id_cat'])) {
     extract($_GET);
     Categorie::supprimerCat($id_cat);

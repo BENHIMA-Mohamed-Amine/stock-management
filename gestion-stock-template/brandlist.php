@@ -4,6 +4,7 @@ session_start();
 <?php if (isset($_SESSION['admin'])): ?>
 <?php
   require_once("../php/Class/Marque.php");
+  $active = array(0, "active", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
   if (isset($_GET['id_marque'])) {
     extract($_GET);
     Marque::suppMarque($id_marque);

@@ -2,7 +2,9 @@
 session_start();
 // print_r($_SESSION);
 ?>
-<?php if (isset($_SESSION['admin'])): ?>
+<?php if (isset($_SESSION['admin'])):
+    $active = array("active", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+?>
 <!DOCTYPE html>
 <html lang="en">
 

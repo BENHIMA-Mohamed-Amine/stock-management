@@ -4,6 +4,7 @@ session_start();
 <?php if (isset($_SESSION['admin'])): ?>
 <?php
   require("../php/Class/Categorie.php");
+  $active = array(0, 0, 0, 0, "active", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
   if (isset($_POST['add'])) {
     extract($_POST);
     $filename = $_FILES["image"]["name"];

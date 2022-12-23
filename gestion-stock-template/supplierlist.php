@@ -5,6 +5,7 @@ session_start();
 <?php
   require_once("../php/Class/Supplier.php");
   require_once("../php/Class/Product.php");
+  $active = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "active", 0, 0, 0);
   if (isset($_GET['id'])) {
     extract($_GET);
     Supplier::supprimer($id, "fournisseur");

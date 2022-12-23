@@ -7,6 +7,7 @@ session_start();
   require_once("../php/Class/Product.php");
   require_once("../php/Class/Purchase.php");
   require_once("../php/Class/PrPurchase.php");
+  $active = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "active", 0, 0, 0, 0, 0, 0);
   if (isset($_POST['add'])) {
     extract($_POST);
     // ila deja 3amro inser had purchase ..

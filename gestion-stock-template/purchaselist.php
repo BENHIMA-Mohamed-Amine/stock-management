@@ -4,6 +4,7 @@ session_start();
 <?php if (isset($_SESSION['admin'])): ?>
 <?php
   require_once("../php/Class/Purchase.php");
+  $active = array(0, 0, 0, 0, 0, 0, 0, 0, 0, "active", 0, 0, 0, 0, 0, 0, 0);
   if (isset($_GET["num_app"])) {
     extract($_GET);
     Purchase::deletePur($num_app);
