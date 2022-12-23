@@ -58,8 +58,8 @@ session_start();
             <h6>Manage your Returns</h6>
           </div>
           <div class="page-btn">
-            <a href="createsalesreturn.html" class="btn btn-added"><img src="assets/img/icons/plus.svg" alt="img"
-                class="me-2" />Add New Sales Return</a>
+            <a href="createsalesreturns.php" class="btn btn-added"><img src="assets/img/icons/plus.svg" alt="img"
+                class="me-2" />Add New Sale</a>
           </div>
         </div>
 
