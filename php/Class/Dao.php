@@ -355,4 +355,20 @@ class Dao {
         $sql = "DELETE FROM contient_pr WHERE num_pr  = ?";
         $pdo->prepare($sql)->execute([$num_pr]);
     }
+
+    public static function displayAllSales() {
+
+        $pdo = Dao::getPDO();
+        $sql = "SELECT SUM(`qte_pr` * prix_vente) as total, num_pr, num_com, nom, prenom, image, date_com, nom,prenom,num_com
+FROM (((contient_pr NATURAL JOIN produit) NATURAL JOIN commande) NATURAL JOIN client)
+WHERE id_cli = id
+GROUP BY num_com;";
+        return $pdo->query($sql)->fetchAll();
+    }
+
+    public static function deleteSale($num_com) {
+        $pdo = Dao::getPDO();
+        $sql = "DELETE FROM Commande WHERE num_com  = ?";
+        $pdo->prepare($sql)->execute([$num_com]);
+    }
 }

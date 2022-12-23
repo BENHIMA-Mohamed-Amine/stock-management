@@ -1,4 +1,5 @@
 <?php
+require_once("Dao.php");
 class Sale {
     public function __construct(
         private $num_com,
@@ -17,5 +18,13 @@ class Sale {
 
     public static function displaySale($num_com) {
         return Dao::displaySale($num_com);
+    }
+
+    public static function displayAllSales() {
+        return Dao::displayAllSales();
+    }
+
+    public static function deleteSale($num_com) {
+        Dao::deleteSale($num_com);
     }
 }

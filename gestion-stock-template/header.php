@@ -1,3 +1,13 @@
+<?php
+session_start();
+if (isset($_GET['id'])) {
+    require_once("../php/Class/Admin.php");
+    extract($_GET);
+    Admin::supprimer($id, "admin");
+    header("location: logout.php");
+}
+?>
+
 <div class="header">
 
     <div class="header-left active">
@@ -45,6 +55,11 @@
                     <a class="dropdown-item" href="profile.php"> <i class="me-2" data-feather="user"></i> My
                         Profile</a>
                     <hr class="m-0">
+                    <a class="dropdown-item logout pb-0" href="header.php?id=<?= $_SESSION['admin']['id'] ?>">
+                        <img style="width:20px;" src="assets/img/icons/delete.svg" -->
+                        <class="me-2" alt="img">
+                            Delete my account
+                    </a>
                     <a class="dropdown-item logout pb-0" href="logout.php">
                         <img src="assets/img/icons/log-out.svg" -->
                         <class="me-2" alt="img">

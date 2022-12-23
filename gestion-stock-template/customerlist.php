@@ -86,31 +86,33 @@ session_start();
                 </thead>
                 <tbody>
                   <?php foreach ($clients as $cl): ?>
-                  <td class="productimgname">
-                    <a href="javascript:void(0);" class="product-img">
-                      <img src="<?= $cl['image'] ?>" alt="product" />
-                    </a>
-                    <a href="javascript:void(0);">
-                      <?= $cl['nom'] . " " . $cl['prenom']; ?>
-                    </a>
-                  </td>
-                  <td>
-                    <?= $cl['adr'] ?>
-                  </td>
-                  <td>
-                    <?= $cl['tele'] ?>
-                  </td>
-                  <td>
-                    <?= $cl['email'] ?>
-                  </td>
-                  <td>
-                    <a class="me-3" href="editcustomer.php?id=<?= $cl['id'] ?>">
-                      <img src="assets/img/icons/edit.svg" alt="img" />
-                    </a>
-                    <a class="me-3" href="customerlist.php?id=<?= $cl['id'] ?>">
-                      <img src="assets/img/icons/delete.svg" alt="img" />
-                    </a>
-                  </td>
+                  <tr>
+                    <td class="productimgname">
+                      <a href="javascript:void(0);" class="product-img">
+                        <img src="<?= $cl['image'] ?>" alt="product" />
+                      </a>
+                      <a href="javascript:void(0);">
+                        <?= $cl['nom'] . " " . $cl['prenom']; ?>
+                      </a>
+                    </td>
+                    <td>
+                      <?= $cl['adr'] ?>
+                    </td>
+                    <td>
+                      <?= $cl['tele'] ?>
+                    </td>
+                    <td>
+                      <?= $cl['email'] ?>
+                    </td>
+                    <td>
+                      <a class="me-3" href="editcustomer.php?id=<?= $cl['id'] ?>">
+                        <img src="assets/img/icons/edit.svg" alt="img" />
+                      </a>
+                      <a class="me-3" href="customerlist.php?id=<?= $cl['id'] ?>">
+                        <img src="assets/img/icons/delete.svg" alt="img" />
+                      </a>
+                    </td>
+                  </tr>
                   <?php endforeach ?>
                 </tbody>
               </table>
