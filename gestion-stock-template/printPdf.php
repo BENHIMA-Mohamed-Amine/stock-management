@@ -181,7 +181,7 @@ ob_end_clean();
 // $orientation = 'landscape';
 // $customPaper = array(0, 0, 950, 950);
 // $dompdf->setPaper($customPaper, $orientation);
-$dompdf->setPaper('A4', 'landscape');
+$dompdf->setPaper('A4', 'portrait');
 
 // Render the HTML as PDF 
 $dompdf->render();
