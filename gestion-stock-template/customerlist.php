@@ -6,8 +6,8 @@ session_start();
   require_once("../php/Class/Client.php");
   require_once("../php/Class/Product.php");
   $active = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "active", 0, 0, 0, 0, 0);
-  if (isset($_GET['id'])) {
-    extract($_GET);
+  if (isset($_GET['id_cli'])) {
+    $id = $_GET['id_cli'];
     Client::supprimer($id, "client");
   }
   $clients = Client::afficher("client");
@@ -108,7 +108,7 @@ session_start();
                       <a class="me-3" href="editcustomer.php?id=<?= $cl['id'] ?>">
                         <img src="assets/img/icons/edit.svg" alt="img" />
                       </a>
-                      <a class="me-3" href="customerlist.php?id=<?= $cl['id'] ?>">
+                      <a class="me-3" href="customerlist.php?id_cli=<?= $cl['id'] ?>">
                         <img src="assets/img/icons/delete.svg" alt="img" />
                       </a>
                     </td>
