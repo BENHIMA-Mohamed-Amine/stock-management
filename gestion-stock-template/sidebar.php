@@ -8,7 +8,7 @@
                             Dashboard</span> </a>
                 </li>
                 <li class="submenu">
-                    <a href="javascript:void(0);"><img src="assets/img/icons/product.svg" alt="img"><span>
+                    <a href="javascript:void(0);"><img src="assets/img/icons/quotation1.svg" alt="img"><span>
                             Category</span> <span class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="categorylist.php" class="<?= $active[3]; ?>">Category List</a></li>
@@ -16,7 +16,7 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="javascript:void(0);"><img src="assets/img/icons/product.svg" alt="img"><span>
+                    <a href="javascript:void(0);"><img src="assets/img/icons/scanners.svg" alt="img"><span>
                             Brand</span> <span class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="brandlist.php" class="<?= $active[1]; ?>">Brand List</a></li>
@@ -49,7 +49,7 @@
                 </li>
                 <li class="submenu">
                     <a href="javascript:void(0);"><img src="assets/img/icons/users1.svg" alt="img"><span>
-                            Customers</span> <span class="menu-arrow"></span></a>
+                            Customer</span> <span class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="customerlist.php" class="<?= $active[11]; ?>">Customer List</a></li>
                         <li><a href="addcustomer.php" class="<?= $active[12]; ?>">Add Customer </a></li>
@@ -66,13 +66,13 @@
                     <a href="javascript:void(0);">
                         <img src="assets/img/icons/users1.svg" alt="img">
                         <span>
-                            Admins
+                            Admin
                         </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <ul>
                         <li><a href="newuser.php" class="<?= $active[15]; ?>">New Admin </a></li>
-                        <li><a href="userlists.php" class="<?= $active[16]; ?>">Admins List</a></li>
+                        <li><a href="userlists.php" class="<?= $active[16]; ?>">Admin List</a></li>
                     </ul>
                 </li>
             </ul>

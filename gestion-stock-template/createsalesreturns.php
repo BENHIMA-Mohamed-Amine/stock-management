@@ -86,8 +86,8 @@ session_start();
       <div class="content">
         <div class="page-header">
           <div class="page-title">
-            <h4>Create Sales Return</h4>
-            <h6>Add/Update Sales Return</h6>
+            <h4>Create Sales</h4>
+            <h6>Add Sales</h6>
           </div>
         </div>
         <div class="card">
