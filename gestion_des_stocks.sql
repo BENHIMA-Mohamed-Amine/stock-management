@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2022 at 03:14 AM
+-- Generation Time: Dec 24, 2022 at 06:48 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -57,6 +57,16 @@ CREATE TABLE `approvisionnement` (
   `id_four` int(11) DEFAULT NULL,
   `desc_app` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `approvisionnement`
+--
+
+INSERT INTO `approvisionnement` (`num_app`, `date_app`, `id_four`, `desc_app`) VALUES
+('101', '07-11-2022', 7, '256GB, des couleurs aléatoires'),
+('102', '12-12-2022', 7, '-'),
+('103', '13-10-2022', 6, 'Des couleurs aléatoires'),
+('104', '01-12-2022', 8, 'des couleurs aléatoires');
 
 -- --------------------------------------------------------
 
@@ -172,6 +182,25 @@ CREATE TABLE `est_compose` (
   `qte_achete` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `est_compose`
+--
+
+INSERT INTO `est_compose` (`num_app`, `num_pr`, `qte_achete`) VALUES
+('101', '8155', 17),
+('101', '8156', 19),
+('102', '4010', 7),
+('102', '4011', 15),
+('102', '8902', 4),
+('103', '7502', 12),
+('103', '7513', 24),
+('103', '7514', 32),
+('103', '7516', 20),
+('103', '7701', 4),
+('104', '9001', 28),
+('104', '9002', 12),
+('104', '9003', 20);
+
 -- --------------------------------------------------------
 
 --
@@ -187,6 +216,15 @@ CREATE TABLE `fournisseur` (
   `email` varchar(1000) DEFAULT NULL,
   `image` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `fournisseur`
+--
+
+INSERT INTO `fournisseur` (`id`, `nom`, `prenom`, `adr`, `tele`, `email`, `image`) VALUES
+(6, 'Ahmed', 'Idrissi', '92 Rue Ismailia, Garage Allal, Casablanca', '0610023654', 'idrissiahmed10@email.com', './image/supplier/supp1 (1).jpg'),
+(7, 'Sami', 'El Amrani', '147 Boulevard Hadj Omar Riffi, N°3 Magasin, Casablanca', '0712005470', 'electro.tahiri@email.com', './image/supplier/supp2 (1).jpg'),
+(8, 'Adham', 'Loukili', '113, bd d\' Alsace (Mers Sultan) Quartier Benjdia, Casablanca', '0611023698', 'loukili.fcb.2012@email.com', './image/supplier/MaLbHAFEG37S8TQ4U-500x500.jpg');
 
 -- --------------------------------------------------------
 
@@ -237,20 +275,20 @@ CREATE TABLE `produit` (
 
 INSERT INTO `produit` (`num_pr`, `id_cat`, `id_marque`, `lib_pr`, `desc_pr`, `prix_uni`, `prix_achat`, `qte_stock`, `pr_image`) VALUES
 ('2001', 10, 29, 'MSI GF63 Thin 15.6', 'Brand : MSI ||| Series : GF63 THIN 9SC-068 ||| Screen Size:15.6 Inches ||| Color : Black ||| Hard Disk Size:1TB + 256 GB ||| CPU Model : Core i5 ||| Ram Memory Installed Size : 8 GB ||| Operating System : Windows 10 Home ||| Card Description : Dedicated Graphics Coprocessor + NVIDIA GeForce GTX 1650', 13500, 12400, 9, './image/product/msilaptop.jpg'),
-('4010', 10, 28, 'Dell XPS 15 15.6', 'Core I7-11800H(8-Core) 512GB PCIe SSD 16GB RAM FHD (1920x1200) 500 Nit Non Touch NVidia RTX 3050 4GB Windows 10 Professional', 19000, 18000, 7, './image/product/xps15.jpg'),
-('4011', 10, 28, 'Dell Inspiron 15.6', 'AMD Ryzen 5 Processor (up to 3.5 GHz), AMD Radeon Vega 8 Graphics, 8GB DDR4 RAM, 256GB PCIe SSD, Full Keyboard, Webcam, HDMI, WiFi, Windows 11 Home', 8990, 5500, 15, './image/product/inspiron15.jpg'),
-('7502', 11, 26, 'Galaxy S22 ULTRA', '(12 GB, 256 GB)', 14600, 12100, 12, './image/product/s22 ultra.jpg'),
-('7513', 11, 26, 'Galaxy S21 FE', '(8 GB, 256 GB)', 7490, 6800, 24, './image/product/s1fe.jpg'),
-('7514', 11, 26, 'Galaxy A04', '(4 GB, 64 GB)', 1390, 1000, 32, './image/product/a04.jpg'),
-('7516', 11, 26, 'Galaxy M52- 5G', '(8 GB, 128 GB)', 3249, 2800, 20, './image/product/m52.jpg'),
-('7701', 13, 26, 'Galaxy Tab S8', '(8 GB, 128 GB)', 8990, 5000, 4, './image/product/s8.jpg'),
-('8155', 11, 25, ' iPhone 13 Pro', '256 GB', 15790, 12000, 17, './image/product/iphone13.jpeg'),
-('8156', 11, 25, 'iPhone 14 Pro', '256 GB', 17990, 15000, 19, './image/product/iphone14.jpg'),
+('4010', 10, 28, 'Dell XPS 15 15.6', 'Core I7-11800H(8-Core) 512GB PCIe SSD 16GB RAM FHD (1920x1200) 500 Nit Non Touch NVidia RTX 3050 4GB Windows 10 Professional', 19000, 18000, 14, './image/product/xps15.jpg'),
+('4011', 10, 28, 'Dell Inspiron 15.6', 'AMD Ryzen 5 Processor (up to 3.5 GHz), AMD Radeon Vega 8 Graphics, 8GB DDR4 RAM, 256GB PCIe SSD, Full Keyboard, Webcam, HDMI, WiFi, Windows 11 Home', 8990, 5500, 30, './image/product/inspiron15.jpg'),
+('7502', 11, 26, 'Galaxy S22 ULTRA', '(12 GB, 256 GB)', 14600, 12100, 24, './image/product/s22 ultra.jpg'),
+('7513', 11, 26, 'Galaxy S21 FE', '(8 GB, 256 GB)', 7490, 6800, 48, './image/product/s1fe.jpg'),
+('7514', 11, 26, 'Galaxy A04', '(4 GB, 64 GB)', 1390, 1000, 64, './image/product/a04.jpg'),
+('7516', 11, 26, 'Galaxy M52- 5G', '(8 GB, 128 GB)', 3249, 2800, 40, './image/product/m52.jpg'),
+('7701', 13, 26, 'Galaxy Tab S8', '(8 GB, 128 GB)', 8990, 5000, 8, './image/product/s8.jpg'),
+('8155', 11, 25, ' iPhone 13 Pro', '256 GB', 15790, 12000, 34, './image/product/iphone13.jpeg'),
+('8156', 11, 25, 'iPhone 14 Pro', '256 GB', 17990, 15000, 38, './image/product/iphone14.jpg'),
 ('8213', 13, 25, 'iPad Pro 11\"', '128 GB', 11990, 9000, 13, './image/product/ipad11.jpg'),
-('8902', 10, 30, 'Huawei MateBook X Pro', '13.9\" 3K Touch, 8th Gen i7-8550U, 16 GB RAM, 512 GB SSD, GeForce MX150, 3:2 Aspect Ratio, Office 365 Personal', 15000, 13500, 4, './image/product/matebook.jpg'),
-('9001', 11, 27, 'Xiaomi 12 Pro', '(12 GB, 256 GB)', 10352, 8800, 28, './image/product/12pro.jpg'),
-('9002', 11, 27, 'Xiaomi Redmi 10A', '(3 GB, 64 GB)', 1535, 900, 12, './image/product/redmi11.jpg'),
-('9003', 11, 27, 'Xiaomi Mi 10T', '(8Go, 128 GB)', 4699, 4000, 20, './image/product/10t.jpg');
+('8902', 10, 30, 'Huawei MateBook X Pro', '13.9\" 3K Touch, 8th Gen i7-8550U, 16 GB RAM, 512 GB SSD, GeForce MX150, 3:2 Aspect Ratio, Office 365 Personal', 15000, 13500, 8, './image/product/matebook.jpg'),
+('9001', 11, 27, 'Xiaomi 12 Pro', '(12 GB, 256 GB)', 10352, 8800, 56, './image/product/12pro.jpg'),
+('9002', 11, 27, 'Xiaomi Redmi 10A', '(3 GB, 64 GB)', 1535, 900, 24, './image/product/redmi11.jpg'),
+('9003', 11, 27, 'Xiaomi Mi 10T', '(8Go, 128 GB)', 4699, 4000, 40, './image/product/10t.jpg');
 
 --
 -- Indexes for dumped tables
@@ -348,7 +386,7 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT for table `fournisseur`
 --
 ALTER TABLE `fournisseur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `marque`
