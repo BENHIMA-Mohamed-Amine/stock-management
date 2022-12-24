@@ -31,6 +31,15 @@
                         <li><a href="addproduct.php" class="<?= $active[6]; ?>">Add Product</a></li>
                     </ul>
                 </li>
+                
+                <li class="submenu">
+                <li class="submenu">
+                    <a href="javascript:void(0);"><img src="assets/img/icons/users1.svg" alt="img"><span>
+                            Customer</span> <span class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="customerlist.php" class="<?= $active[11]; ?>">Customer List</a></li>
+                        <li><a href="addcustomer.php" class="<?= $active[12]; ?>">Add Customer </a></li>
+                    </ul>
                 <li class="submenu">
                     <a href="javascript:void(0);"><img src="assets/img/icons/sales1.svg" alt="img"><span>
                             Sales</span> <span class="menu-arrow"></span></a>
@@ -40,22 +49,6 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="javascript:void(0);"><img src="assets/img/icons/purchase1.svg" alt="img"><span>
-                            Purchase</span> <span class="menu-arrow"></span></a>
-                    <ul>
-                        <li><a href="purchaselist.php" class="<?= $active[9]; ?>">Purchase List</a></li>
-                        <li><a href="addpurchase.php" class="<?= $active[10]; ?>">Add Purchase</a></li>
-                    </ul>
-                </li>
-                <li class="submenu">
-                    <a href="javascript:void(0);"><img src="assets/img/icons/users1.svg" alt="img"><span>
-                            Customer</span> <span class="menu-arrow"></span></a>
-                    <ul>
-                        <li><a href="customerlist.php" class="<?= $active[11]; ?>">Customer List</a></li>
-                        <li><a href="addcustomer.php" class="<?= $active[12]; ?>">Add Customer </a></li>
-                    </ul>
-                <li class="submenu">
-                    <li class="submenu">
                     <a href="javascript:void(0);"><img src="assets/img/icons/users1.svg" alt="img"><span>
                             Supplier</span> <span class="menu-arrow"></span></a>
                     <ul>
@@ -63,6 +56,16 @@
                         <li><a href="addsupplier.php" class="<?= $active[14]; ?>">Add Supplier </a></li>
                     </ul>
                 <li class="submenu">
+                <li class="submenu">
+                    <a href="javascript:void(0);"><img src="assets/img/icons/purchase1.svg" alt="img"><span>
+                            Purchase</span> <span class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="purchaselist.php" class="<?= $active[9]; ?>">Purchase List</a></li>
+                        <li><a href="addpurchase.php" class="<?= $active[10]; ?>">Add Purchase</a></li>
+                    </ul>
+                </li>
+                
+                   <li class="submenu"> 
                     <a href="javascript:void(0);">
                         <img src="assets/img/icons/users1.svg" alt="img">
                         <span>
