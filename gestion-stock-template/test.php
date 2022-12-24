@@ -3,9 +3,8 @@
 
 echo ("<pre>");
 print_r($_POST);
-echo ("<pre>");
-print_r($_FILES);
-
+// $test = $_GET['fname'];
+// var_dump($test)
 // $msg = "";
 
 // // If upload button is clicked ...

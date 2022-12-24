@@ -11,4 +11,4 @@ class Client extends Personne {
     ) {
         Personne::__construct($nom, $prenom, $adr, $tele, $email, $image);
     }
-}
+} 

@@ -1,9 +1,10 @@
 <?php
 require_once "Dao.php";
 require_once("AfficherTout.php");
+require_once("TotalLigne.php");
 class Purchase {
     // bach ndeclarer la methode afficher li ftrait f had la class
-    use AfiicherTout;
+    use AfiicherTout, TotalLigne;
     public function __construct(
         private $num_app,
         private $date_app,
@@ -45,5 +46,9 @@ class Purchase {
 
     public static function deletePur($num_app) {
         Dao::deletePur($num_app);
+    }
+
+    public function FunctionName(Type $var = null) {
+        # code...
     }
 }

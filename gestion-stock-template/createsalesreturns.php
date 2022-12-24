@@ -13,21 +13,27 @@ session_start();
   if (isset($_POST['add'])) {
     extract($_POST);
     // ila deja 3amro inser had purchase ..
-    if (!sale::isSale($num_com)) {
-      $pruchase = new Sale($num_com, $date_com, $id_cli);
-      $pruchase->add();
-    }
-    // echo ("<pre>");
+    $qty = Product::qtePr($num_pr);
     // print_r($_POST);
-    $product_of_sale = new PrSale($num_pr, $num_com, $qte_pr, $prix_vente);
-    try {
-      $product_of_sale->add();
-    } catch (\Throwable $th) {
+    if ($qte_pr < $qty['qte_stock']) {
+
+      if (!sale::isSale($num_com)) {
+        $pruchase = new Sale($num_com, $date_com, $id_cli);
+        $pruchase->add();
+      }
+      // echo ("<pre>");
+      // print_r($_POST);
+      $product_of_sale = new PrSale($num_pr, $num_com, $qte_pr, $prix_vente);
+      try {
+        $product_of_sale->add();
+      } catch (\Throwable $th) {
+      }
+      Product::deleteQty($num_pr, $qte_pr);
+      $prsSales = PrSale::displayPrsSale($num_com);
+      $sale = Sale::displaySale($num_com);
+    } else {
+      $out_of_stock = true;
     }
-    Product::deleteQty($num_pr, $qte_pr);
-    $prsSales = PrSale::displayPrsSale($num_com);
-    $sale = Sale::displaySale($num_com);
-    // print_r($pur); 
   }
 
   if (isset($_GET['num_pr'])) {
@@ -36,6 +42,14 @@ session_start();
     $prsSales = PrSale::displayPrsSale($num_com);
     $sale = Sale::displaySale($num_com);
   }
+
+
+  // $test = $_GET['fname'];
+  // var_dump($test);
+  // print_r($_COOKIE);
+  // if ($_COOKIE['id_brand']) {
+  //   # code...
+  // }
   $clients = Client::afficher("client");
   $products = Product::afficher("produit");
   // print_r($Products);
@@ -122,8 +136,8 @@ session_start();
                   <label>Brand Name</label>
                   <div class="row">
                     <div class="col-lg-10 col-sm-10 col-10">
-                      <select class="select" name="id_marque">
-                        <option>Select Brand</option>
+                      <select class="select" name="id_marque" id="brand" onchange="changeBrand()">
+                        <option value="">Select Brand</option>
                         <?php foreach ($brands as $brand): ?>
                         <option value="<?= $brand['id_marque']; ?>"><?= $brand['nom_marque']; ?></option>
                         <?php endforeach ?>
@@ -142,8 +156,8 @@ session_start();
                   <label>Category Name</label>
                   <div class="row">
                     <div class="col-lg-10 col-sm-10 col-10">
-                      <select class="select" name="id_cat">
-                        <option>Select Category</option>
+                      <select class="select" name="id_cat" id="cat">
+                        <option value="">Select Category</option>
                         <?php foreach ($categories as $cat): ?>
                         <option value="<?= $cat['id_cat']; ?>"><?= $cat['lib_cat']; ?></option>
                         <?php endforeach ?>
@@ -181,6 +195,9 @@ session_start();
                 <div class="form-group">
                   <label>Quanty</label>
                   <input type="text" name="qte_pr" />
+                  <?php if (isset($qte_pr)): ?>
+                  <p style="color:red; text-align: center">Exceed stock</p>
+                  <?php endif ?>
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
@@ -248,7 +265,7 @@ session_start();
             </div>
             <div class="col-lg-12">
               <button class="btn btn-submit me-2" type="submit" name="add">Add</button>
-              <a href="salesreturnlist.php" class="btn btn-cancel">Cancel</a>
+              <a href="salesreturnlists.php" class="btn btn-cancel">Cancel</a>
             </div>
           </form>
         </div>
@@ -276,6 +293,7 @@ session_start();
   <script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
 
   <script src="assets/js/script.js"></script>
+  <script src="filter.js"></script>
 </body>
 
 </html>

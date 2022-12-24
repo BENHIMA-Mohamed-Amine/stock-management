@@ -3,7 +3,19 @@ session_start();
 // print_r($_SESSION);
 ?>
 <?php if (isset($_SESSION['admin'])):
+    require_once("../php/Class/Client.php");
+    require_once("../php/Class/Supplier.php");
+    require_once("../php/Class/Purchase.php");
+    require_once("../php/Class/Sale.php");
+    require_once("../php/Class/Product.php");
     $active = array("active", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    $clients = Client::nbrDesTuples("client");
+    $suppliers = Supplier::nbrDesTuples("fournisseur");
+    $purchases = Purchase::TotalLigne("approvisionnement");
+    $sales = Sale::TotalLigne("commande");
+    $products = Product::afficher("produit");
+    $almost_expired_products = Product::afficherExepiredPr();
+    // print_r($clients); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -93,7 +105,7 @@ session_start();
                     <div class="col-lg-3 col-sm-6 col-12 d-flex">
                         <div class="dash-count">
                             <div class="dash-counts">
-                                <h4>100</h4>
+                                <h4><?= $clients ?></h4>
                                 <h5>Customers</h5>
                             </div>
                             <div class="dash-imgs">
@@ -104,7 +116,7 @@ session_start();
                     <div class="col-lg-3 col-sm-6 col-12 d-flex">
                         <div class="dash-count das1">
                             <div class="dash-counts">
-                                <h4>100</h4>
+                                <h4><?= $suppliers ?></h4>
                                 <h5>Suppliers</h5>
                             </div>
                             <div class="dash-imgs">
@@ -115,7 +127,7 @@ session_start();
                     <div class="col-lg-3 col-sm-6 col-12 d-flex">
                         <div class="dash-count das2">
                             <div class="dash-counts">
-                                <h4>100</h4>
+                                <h4><?= $purchases ?></h4>
                                 <h5>Purchase Invoice</h5>
                             </div>
                             <div class="dash-imgs">
@@ -126,7 +138,7 @@ session_start();
                     <div class="col-lg-3 col-sm-6 col-12 d-flex">
                         <div class="dash-count das3">
                             <div class="dash-counts">
-                                <h4>105</h4>
+                                <h4><?= $sales ?></h4>
                                 <h5>Sales Invoice</h5>
                             </div>
                             <div class="dash-imgs">
@@ -204,46 +216,22 @@ session_start();
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php
+    $j = 0;
+    for ($i = sizeof($products) - 1; $i >= sizeof($products) - 4; $i--):
+        $j++;
+                                            ?>
                                             <tr>
-                                                <td>1</td>
+                                                <td><?= $j; ?></td>
                                                 <td class="productimgname">
-                                                    <a href="productlist.html" class="product-img">
-                                                        <img src="assets/img/product/product22.jpg" alt="product">
+                                                    <a href="productlist.php" class="product-img">
+                                                        <img src="<?= $products[$i]['pr_image'] ?>" alt="product">
                                                     </a>
-                                                    <a href="productlist.html">Apple Earpods</a>
+                                                    <a href="productlist.php"><?= $products[$i]['lib_pr'] ?></a>
                                                 </td>
-                                                <td>$891.2</td>
+                                                <td><?= $products[$i]['prix_uni'] ?>DH</td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td class="productimgname">
-                                                    <a href="productlist.html" class="product-img">
-                                                        <img src="assets/img/product/product23.jpg" alt="product">
-                                                    </a>
-                                                    <a href="productlist.html">iPhone 11</a>
-                                                </td>
-                                                <td>$668.51</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td class="productimgname">
-                                                    <a href="productlist.html" class="product-img">
-                                                        <img src="assets/img/product/product24.jpg" alt="product">
-                                                    </a>
-                                                    <a href="productlist.html">samsung</a>
-                                                </td>
-                                                <td>$522.29</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td class="productimgname">
-                                                    <a href="productlist.html" class="product-img">
-                                                        <img src="assets/img/product/product6.jpg" alt="product">
-                                                    </a>
-                                                    <a href="productlist.html">Macbook Pro</a>
-                                                </td>
-                                                <td>$291.01</td>
-                                            </tr>
+                                            <?php endfor ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -253,72 +241,36 @@ session_start();
                 </div>
                 <div class="card mb-0">
                     <div class="card-body">
-                        <h4 class="card-title">Expired Products</h4>
+                        <h4 class="card-title">Almost Expired Products</h4>
                         <div class="table-responsive dataview">
                             <table class="table datatable ">
                                 <thead>
                                     <tr>
                                         <th>SNo</th>
-                                        <th>Product Code</th>
                                         <th>Product Name</th>
                                         <th>Brand Name</th>
                                         <th>Category Name</th>
-                                        <th>Expiry Date</th>
+                                        <th>Purchase price</th>
+                                        <th>Remaining quantity</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php for ($i = 0; $i < 4; $i++): ?>
                                     <tr>
-                                        <td>1</td>
-                                        <td><a href="javascript:void(0);">IT0001</a></td>
+                                        <td><?= $i + 1; ?></td>
                                         <td class="productimgname">
-                                            <a class="product-img" href="productlist.html">
-                                                <img src="assets/img/product/product2.jpg" alt="product">
+                                            <a class="product-img" href="productlist.php">
+                                                <img src="<?= $almost_expired_products[$i]['pr_image'] ?>"
+                                                    alt="product">
                                             </a>
-                                            <a href="productlist.html">Orange</a>
+                                            <a href="productlist.php"><?= $almost_expired_products[$i]['lib_pr'] ?></a>
                                         </td>
-                                        <td>N/D</td>
-                                        <td>Fruits</td>
-                                        <td>12-12-2022</td>
+                                        <td><?= $almost_expired_products[$i]['nom_marque'] ?></td>
+                                        <td><?= $almost_expired_products[$i]['lib_cat'] ?></td>
+                                        <td><?= $almost_expired_products[$i]['prix_achat'] ?></td>
+                                        <td><?= $almost_expired_products[$i]['qte_stock'] ?></td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td><a href="javascript:void(0);">IT0002</a></td>
-                                        <td class="productimgname">
-                                            <a class="product-img" href="productlist.html">
-                                                <img src="assets/img/product/product3.jpg" alt="product">
-                                            </a>
-                                            <a href="productlist.html">Pineapple</a>
-                                        </td>
-                                        <td>N/D</td>
-                                        <td>Fruits</td>
-                                        <td>25-11-2022</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td><a href="javascript:void(0);">IT0003</a></td>
-                                        <td class="productimgname">
-                                            <a class="product-img" href="productlist.html">
-                                                <img src="assets/img/product/product4.jpg" alt="product">
-                                            </a>
-                                            <a href="productlist.html">Stawberry</a>
-                                        </td>
-                                        <td>N/D</td>
-                                        <td>Fruits</td>
-                                        <td>19-11-2022</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td><a href="javascript:void(0);">IT0004</a></td>
-                                        <td class="productimgname">
-                                            <a class="product-img" href="productlist.html">
-                                                <img src="assets/img/product/product5.jpg" alt="product">
-                                            </a>
-                                            <a href="productlist.html">Avocat</a>
-                                        </td>
-                                        <td>N/D</td>
-                                        <td>Fruits</td>
-                                        <td>20-11-2022</td>
-                                    </tr>
+                                    <?php endfor ?>
                                 </tbody>
                             </table>
                         </div>

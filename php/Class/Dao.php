@@ -368,6 +368,16 @@ GROUP BY num_com;";
 
     public static function deleteSale($num_com) {
         $pdo = Dao::getPDO();
+        $sql = "SELECT num_pr, qte_pr FROM contient_pr  WHERE num_com=?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$num_com]);
+        $products = $stmt->fetchAll();
+
+        foreach ($products as $pr) {
+            $sql = "UPDATE produit SET qte_stock=qte_stock+? WHERE num_pr=?";
+            $pdo->prepare($sql)->execute([$pr['qte_pr'], $pr['num_pr']]);
+        }
+
         $sql = "DELETE FROM Commande WHERE num_com  = ?";
         $pdo->prepare($sql)->execute([$num_com]);
     }
@@ -378,5 +388,26 @@ GROUP BY num_com;";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$num_com]);
         return $stmt->fetchAll();
+    }
+
+    public static function qtePr($num_pr) {
+        $pdo = Dao::getPDO();
+        $sql = "SELECT qte_stock FROM produit WHERE num_pr = ?;";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$num_pr]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function TotalLigne($nom_de_class) {
+        $pdo = Dao::getPDO();
+        $sql = "SELECT COUNT(*) as total FROM {$nom_de_class};";
+        $stmt = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+        return $stmt['total'];
+    }
+
+    public static function afficherExepiredPr() {
+        $pdo = Dao::getPDO();
+        $sql = "SELECT * FROM produit NATURAL JOIN marque NATURAL JOIN categorie ORDER BY qte_stock;";
+        return $pdo->query($sql)->fetchAll();
     }
 }

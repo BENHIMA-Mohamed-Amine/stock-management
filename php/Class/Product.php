@@ -44,4 +44,12 @@ class Product {
     public static function deleteQty($num_pr, $qte_pr) {
         Dao::deleteQty($num_pr, $qte_pr);
     }
+
+    public static function qtePr($num_pr) {
+        return Dao::qtePr($num_pr);
+    }
+
+    public static function afficherExepiredPr() {
+        return Dao::afficherExepiredPr();
+    }
 }

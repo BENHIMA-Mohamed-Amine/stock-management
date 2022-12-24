@@ -1,6 +1,8 @@
 <?php
 require_once("Dao.php");
+require_once("TotalLigne.php");
 class Sale {
+    use TotalLigne;
     public function __construct(
         private $num_com,
         private $date_com,
