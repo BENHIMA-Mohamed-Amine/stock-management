@@ -105,7 +105,7 @@ session_start();
                       <?= $cl['email'] ?>
                     </td>
                     <td>
-                      <a class="me-3" href="editcustomer.php?id=<?= $cl['id'] ?>">
+                      <a class="me-3" href="editcustomer.php?id_cli=<?= $cl['id'] ?>">
                         <img src="assets/img/icons/edit.svg" alt="img" />
                       </a>
                       <a class="me-3" href="customerlist.php?id_cli=<?= $cl['id'] ?>">

@@ -34,8 +34,8 @@ session_start();
     }
     $client = Client::affciherPersonne($id, "client");
   }
-  if (isset($_GET['id'])) {
-    extract($_GET);
+  if (isset($_GET['id_cli'])) {
+    $id = $_GET['id_cli'];
     $client = Client::affciherPersonne($id, "client");
   }
 
