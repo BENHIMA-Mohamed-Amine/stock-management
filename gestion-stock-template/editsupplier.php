@@ -34,8 +34,8 @@ session_start();
     }
     $supplier = Supplier::affciherPersonne($id, "fournisseur");
   }
-  if (isset($_GET['id'])) {
-    extract($_GET);
+  if (isset($_GET['id_sup'])) {
+    $id = $_GET['id_sup'];
     $supplier = Supplier::affciherPersonne($id, "fournisseur");
   }
 

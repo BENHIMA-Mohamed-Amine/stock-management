@@ -270,7 +270,10 @@ class Dao {
 
     public static function displayAllPur() {
         $pdo = Dao::getPDO();
-        $sql = "SELECT * FROM approvisionnement NATURAL JOIN fournisseur WHERE id_four = id;";
+        $sql = "SELECT SUM(`qte_achete` * prix_achat) as total, num_pr, num_app, nom, prenom, image, nom, prenom, date_app
+        FROM (((est_compose NATURAL JOIN produit) NATURAL JOIN approvisionnement) NATURAL JOIN fournisseur)
+        WHERE id = id_four
+        GROUP BY num_app;";
         return $pdo->query($sql)->fetchAll();
     }
 
@@ -408,6 +411,16 @@ GROUP BY num_com;";
     public static function afficherExepiredPr() {
         $pdo = Dao::getPDO();
         $sql = "SELECT * FROM produit NATURAL JOIN marque NATURAL JOIN categorie ORDER BY qte_stock;";
+        return $pdo->query($sql)->fetchAll();
+    }
+
+    public static function topSales() {
+        $pdo = Dao::getPDO();
+        $sql = "SELECT SUM(`qte_pr` * prix_vente) as total, num_pr, num_com, nom, prenom, image, date_com, nom,prenom,num_com
+FROM (((contient_pr NATURAL JOIN produit) NATURAL JOIN commande) NATURAL JOIN client)
+WHERE id_cli = id
+GROUP BY num_com
+ORDER BY total DESC;";
         return $pdo->query($sql)->fetchAll();
     }
 }

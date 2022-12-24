@@ -33,4 +33,7 @@ class Sale {
     public static function displaySaleWithPr($num_com) {
         return Dao::displaySaleWithPr($num_com);
     }
+    public static function topSales() {
+        return Dao::topSales();
+    }
 }

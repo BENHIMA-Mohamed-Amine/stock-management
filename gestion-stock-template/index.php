@@ -15,6 +15,20 @@ session_start();
     $sales = Sale::TotalLigne("commande");
     $products = Product::afficher("produit");
     $almost_expired_products = Product::afficherExepiredPr();
+    $all_sales = Sale::topSales();
+    $all_purchases = Purchase::displayAllPur();
+    $total_all_sales = 0;
+    foreach ($all_sales as $item) {
+        $total_all_sales += $item['total'];
+    }
+    $total_all_pur = 0;
+    foreach ($all_purchases as $value) {
+        $total_all_pur += $value['total'];
+    }
+    $total_all_pr = 0;
+    foreach ($products as $value) {
+        $total_all_pr += $value['qte_stock'];
+    }
     // print_r($clients); 
 ?>
 <!DOCTYPE html>
@@ -63,9 +77,11 @@ session_start();
                             <div class="dash-widgetimg">
                                 <span><img src="assets/img/icons/dash1.svg" alt="img"></span>
                             </div>
+                            <?php ?>
+                            <?php ?>
                             <div class="dash-widgetcontent">
-                                <h5>$<span class="counters" data-count="307144.00">$307,144.00</span></h5>
-                                <h6>Total Purchase Due</h6>
+                                <h5><span class="counters" data-count="<?= $total_all_pur ?>"><?= $total_all_pur ?>DH</span></h5>
+                                <h6>Total Purchases</h6>
                             </div>
                         </div>
                     </div>
@@ -75,8 +91,8 @@ session_start();
                                 <span><img src="assets/img/icons/dash2.svg" alt="img"></span>
                             </div>
                             <div class="dash-widgetcontent">
-                                <h5>$<span class="counters" data-count="4385.00">$4,385.00</span></h5>
-                                <h6>Total Sales Due</h6>
+                                <h5><span class="counters" data-count="<?= $total_all_sales ?>"><?= $total_all_sales ?>DH</span></h5>
+                                <h6>Total Sales</h6>
                             </div>
                         </div>
                     </div>
@@ -86,8 +102,8 @@ session_start();
                                 <span><img src="assets/img/icons/dash3.svg" alt="img"></span>
                             </div>
                             <div class="dash-widgetcontent">
-                                <h5>$<span class="counters" data-count="385656.50">385,656.50</span></h5>
-                                <h6>Total Sale Amount</h6>
+                                <h5><span class="counters" data-count="<?= $total_all_sales - $total_all_pur ?>"><?= $total_all_sales - $total_all_pur ?></span></h5>
+                                <h6>Total Profit</h6>
                             </div>
                         </div>
                     </div>
@@ -97,8 +113,9 @@ session_start();
                                 <span><img src="assets/img/icons/dash4.svg" alt="img"></span>
                             </div>
                             <div class="dash-widgetcontent">
-                                <h5>$<span class="counters" data-count="40000.00">400.00</span></h5>
-                                <h6>Total Sale Amount</h6>
+                                <h5><span class="counters" data-count="<?= $total_all_pr ?>"><?= $total_all_pr ?></span>
+                                </h5>
+                                <h6>Total Products</h6>
                             </div>
                         </div>
                     </div>
@@ -151,39 +168,32 @@ session_start();
                 <div class="row">
                     <div class="col-lg-7 col-sm-12 col-12 d-flex">
                         <div class="card flex-fill">
-                            <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                                <h5 class="card-title mb-0">Purchase & Sales</h5>
-                                <div class="graph-sets">
-                                    <ul>
-                                        <li>
-                                            <span>Sales</span>
-                                        </li>
-                                        <li>
-                                            <span>Purchase</span>
-                                        </li>
-                                    </ul>
-                                    <div class="dropdown">
-                                        <button class="btn btn-white btn-sm dropdown-toggle" type="button"
-                                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                            2022 <img src="assets/img/icons/dropdown.svg" alt="img" class="ms-2">
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <li>
-                                                <a href="javascript:void(0);" class="dropdown-item">2022</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0);" class="dropdown-item">2021</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0);" class="dropdown-item">2020</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div id="sales_charts"></div>
-                            </div>
+                            <h4 class="card-title mb-0" style="padding:15px;">Top 4 Sales</h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Sale reference</th>
+                                        <th>Customer</th>
+                                        <th>Date</th>
+                                        <th>Grand Total (DH)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php for ($i = 0; $i <= 3; $i++): ?>
+                                    <tr>
+                                        <td><?= $all_sales[$i]['num_com'] ?></td>
+                                        <td class="productimgname">
+                                            <a href="javascript:void(0);" class="product-img">
+                                                <img src="<?= $all_sales[$i]['image'] ?>" alt="product" />
+                                            </a>
+                                            <a href="javascript:void(0);"><?= $all_sales[$i]['nom'] . " " . $all_sales[$i]['prenom'] ?></a>
+                                        </td>
+                                        <td><?= $all_sales[$i]['date_com'] ?></td>
+                                        <td><?= $all_sales[$i]['total'] ?></td>
+                                    </tr>
+                                    <?php endfor ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="col-lg-5 col-sm-12 col-12 d-flex">
@@ -197,10 +207,10 @@ session_start();
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <li>
-                                            <a href="productlist.html" class="dropdown-item">Product List</a>
+                                            <a href="productlist.php" class="dropdown-item">Product List</a>
                                         </li>
                                         <li>
-                                            <a href="addproduct.html" class="dropdown-item">Product Add</a>
+                                            <a href="addproduct.php" class="dropdown-item">Add Product</a>
                                         </li>
                                     </ul>
                                 </div>

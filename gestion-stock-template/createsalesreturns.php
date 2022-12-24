@@ -36,6 +36,8 @@ session_start();
     }
   }
 
+  // print_r($_POST);
+
   if (isset($_GET['num_pr'])) {
     extract($_GET);
     PrSale::deletePrSale($num_pr);
@@ -273,6 +275,7 @@ session_start();
     </div>
   </div>
 
+
   <script src="assets/js/jquery-3.6.0.min.js"></script>
 
   <script src="assets/js/feather.min.js"></script>
@@ -294,6 +297,7 @@ session_start();
 
   <script src="assets/js/script.js"></script>
   <script src="filter.js"></script>
+
 </body>
 
 </html>

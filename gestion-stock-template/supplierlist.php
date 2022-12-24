@@ -105,7 +105,7 @@ session_start();
                       <?= $supplier['email'] ?>
                     </td>
                     <td>
-                      <a class="me-3" href="editsupplier.php?id=<?= $supplier['id'] ?>">
+                      <a class="me-3" href="editsupplier.php?id_sup=<?= $supplier['id'] ?>">
                         <img src="assets/img/icons/edit.svg" alt="img" />
                       </a>
                       <a class="me-3" href="supplierlist.php?id=<?= $supplier['id'] ?>">
