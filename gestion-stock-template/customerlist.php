@@ -23,7 +23,7 @@ session_start();
     content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects" />
   <meta name="author" content="Dreamguys - Bootstrap Admin Template" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Dreams Pos admin template</title>
+  <title>Customer List</title>
 
   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png" />
 
@@ -78,9 +78,9 @@ session_start();
                 <thead>
                   <tr>
                     <th>Customer Name</th>
-                    <th>address</th>
+                    <th>Address</th>
                     <th>Phone</th>
-                    <th>email</th>
+                    <th>E-mail</th>
                     <th>Action</th>
                   </tr>
                 </thead>

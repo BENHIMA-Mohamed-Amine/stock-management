@@ -23,7 +23,7 @@ session_start();
     content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects" />
   <meta name="author" content="Dreamguys - Bootstrap Admin Template" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Dreams Pos admin template</title>
+  <title>Supplier List</title>
 
   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png" />
 
@@ -56,7 +56,7 @@ session_start();
         <div class="page-header">
           <div class="page-title">
             <h4>Supplier List</h4>
-            <h6>Manage your Supplier</h6>
+            <h6>Manage your Suppliers</h6>
           </div>
           <div class="page-btn">
             <a href="addsupplier.php" class="btn btn-added"><img src="assets/img/icons/plus.svg" alt="img" />Add
@@ -78,9 +78,9 @@ session_start();
                 <thead>
                   <tr>
                     <th>Customer Name</th>
-                    <th>address</th>
+                    <th>Address</th>
                     <th>Phone</th>
-                    <th>email</th>
+                    <th>E-mail</th>
                     <th>Action</th>
                   </tr>
                 </thead>

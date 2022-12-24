@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2022 at 11:54 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Dec 24, 2022 at 02:24 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -76,9 +76,9 @@ CREATE TABLE `categorie` (
 --
 
 INSERT INTO `categorie` (`id_cat`, `lib_cat`, `desc_cat`, `cat_image`) VALUES
-(7, 'Laptop ', 'Laptop category ', './image/category/laptop.jpg'),
-(8, 'Phone', 'Phone category ', './image/category/phone.jpg'),
-(9, 'Tablet', 'Tablet category', './image/category/teblet.jpg');
+(10, 'Laptop', 'Portable personal computer.', './image/category/laptop.jpeg'),
+(11, 'Smartphone', 'Cellular telephone with an integrated computer.', './image/category/smartphone.jpg'),
+(13, 'Tablet', 'Portable personal computer with a touchscreen interface.', './image/category/tablet.jpg');
 
 -- --------------------------------------------------------
 
@@ -101,8 +101,8 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`id`, `nom`, `prenom`, `adr`, `tele`, `email`, `image`) VALUES
-(7, 'haitham', 'belcaida', 'safi', '0766032618', 'belcaida@gmail.com', './image/client/haitam_pic.jpg'),
-(8, 'med-amine', 'benhima', 'safi', '0766032618', 'root@gmail.com', './image/client/pc.jpg');
+(10, 'Ayoub', 'Barki', '412, Derb Kwibina, Sidi Barnoussi, Casablanca', '0625024189', 'barki.ayoub@email.com', './image/client/IMG-20221027-WA0032 (1).jpg'),
+(11, 'Mohammed', 'Kerroumi', '12, Rue Ibn Sina, Kenitra', '0691001577', 'ismail.2012@email.com', './image/client/zaae.jpg');
 
 -- --------------------------------------------------------
 
@@ -116,13 +116,6 @@ CREATE TABLE `commande` (
   `id_cli` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `commande`
---
-
-INSERT INTO `commande` (`num_com`, `date_com`, `id_cli`) VALUES
-('1234', '23-12-2022', 7);
-
 -- --------------------------------------------------------
 
 --
@@ -135,14 +128,6 @@ CREATE TABLE `contient_pr` (
   `qte_pr` int(11) DEFAULT NULL,
   `prix_vente` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `contient_pr`
---
-
-INSERT INTO `contient_pr` (`num_pr`, `num_com`, `qte_pr`, `prix_vente`) VALUES
-('123', '1234', 5, '10000'),
-('1234', '1234', 1, '10000');
 
 -- --------------------------------------------------------
 
@@ -172,13 +157,6 @@ CREATE TABLE `fournisseur` (
   `image` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `fournisseur`
---
-
-INSERT INTO `fournisseur` (`id`, `nom`, `prenom`, `adr`, `tele`, `email`, `image`) VALUES
-(5, 'med-amine', 'benhima', 'safi', '0766032618', 'test@gmail.com', './image/supplier/haitam_pic.jpg');
-
 -- --------------------------------------------------------
 
 --
@@ -197,9 +175,12 @@ CREATE TABLE `marque` (
 --
 
 INSERT INTO `marque` (`id_marque`, `nom_marque`, `description_marque`, `br_image`) VALUES
-(22, 'Apple', 'apple brand', './image/brand/apple.png'),
-(23, 'Samsung ', 'Samsung brand', './image/brand/samsung.png'),
-(24, 'Adidas', 'adidas ', './image/brand/adidas.png');
+(25, 'Apple', 'American multinational technology company.', './image/brand/apple.jpg'),
+(26, 'Samsung', 'South Korean multinational electronics corporation.', './image/brand/samsung.jpg'),
+(27, 'Xiaomi', 'Chinese designer and manufacturer of consumer electronics.', './image/brand/xiaomi.png'),
+(28, 'Dell', 'American based technology company.', './image/brand/dell.png'),
+(29, 'MSI', 'Taiwanese multinational information technology corporation.', './image/brand/msi.jpg'),
+(30, 'Huawei', 'Chinese multinational technology corporation.', './image/brand/huawei.jpg');
 
 -- --------------------------------------------------------
 
@@ -224,8 +205,21 @@ CREATE TABLE `produit` (
 --
 
 INSERT INTO `produit` (`num_pr`, `id_cat`, `id_marque`, `lib_pr`, `desc_pr`, `prix_uni`, `prix_achat`, `qte_stock`, `pr_image`) VALUES
-('123', 8, 22, 'iphone 14', 'iphone 14 128GB', 12000, 10000, 20, './image/product/iphone_14.jpg'),
-('1234', 7, 22, 'mac ', 'macbook', 15000, 10000, 14, './image/product/mac_pc.jpg');
+('2001', 10, 29, 'MSI GF63 Thin 15.6', 'Brand : MSI ||| Series : GF63 THIN 9SC-068 ||| Screen Size:15.6 Inches ||| Color : Black ||| Hard Disk Size:1TB + 256 GB ||| CPU Model : Core i5 ||| Ram Memory Installed Size : 8 GB ||| Operating System : Windows 10 Home ||| Card Description : Dedicated Graphics Coprocessor + NVIDIA GeForce GTX 1650', 13500, 12400, 10, './image/product/msilaptop.jpg'),
+('4010', 10, 28, 'Dell XPS 15 15.6', 'Core I7-11800H(8-Core) 512GB PCIe SSD 16GB RAM FHD (1920x1200) 500 Nit Non Touch NVidia RTX 3050 4GB Windows 10 Professional', 19000, 18000, 8, './image/product/xps15.jpg'),
+('4011', 10, 28, 'Dell Inspiron 15.6', 'AMD Ryzen 5 Processor (up to 3.5 GHz), AMD Radeon Vega 8 Graphics, 8GB DDR4 RAM, 256GB PCIe SSD, Full Keyboard, Webcam, HDMI, WiFi, Windows 11 Home', 8990, 5500, 16, './image/product/inspiron15.jpg'),
+('7502', 11, 26, 'Galaxy S22 ULTRA', '(12 GB, 256 GB)', 14600, 12100, 13, './image/product/s22 ultra.jpg'),
+('7513', 11, 26, 'Galaxy S21 FE', '(8 GB, 256 GB)', 7490, 6800, 25, './image/product/s1fe.jpg'),
+('7514', 11, 26, 'Galaxy A04', '(4 GB, 64 GB)', 1390, 1000, 32, './image/product/a04.jpg'),
+('7516', 11, 26, 'Galaxy M52- 5G', '(8 GB, 128 GB)', 3249, 2800, 20, './image/product/m52.jpg'),
+('7701', 13, 26, 'Galaxy Tab S8', '(8 GB, 128 GB)', 8990, 5000, 6, './image/product/s8.jpg'),
+('8155', 11, 25, ' iPhone 13 Pro', '256 GB', 15790, 12000, 20, './image/product/iphone13.jpeg'),
+('8156', 11, 25, 'iPhone 14 Pro', '256 GB', 17990, 15000, 20, './image/product/iphone14.jpg'),
+('8213', 13, 25, 'iPad Pro 11\"', '128 GB', 11990, 9000, 14, './image/product/ipad11.jpg'),
+('8902', 10, 30, 'Huawei MateBook X Pro', '13.9\" 3K Touch, 8th Gen i7-8550U, 16 GB RAM, 512 GB SSD, GeForce MX150, 3:2 Aspect Ratio, Office 365 Personal', 15000, 13500, 5, './image/product/matebook.jpg'),
+('9001', 11, 27, 'Xiaomi 12 Pro', '(12 GB, 256 GB)', 10352, 8800, 30, './image/product/12pro.jpg'),
+('9002', 11, 27, 'Xiaomi Redmi 10A', '(3 GB, 64 GB)', 1535, 900, 12, './image/product/redmi11.jpg'),
+('9003', 11, 27, 'Xiaomi Mi 10T', '(8Go, 128 GB)', 4699, 4000, 20, './image/product/10t.jpg');
 
 --
 -- Indexes for dumped tables
@@ -311,13 +305,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `fournisseur`
@@ -329,7 +323,7 @@ ALTER TABLE `fournisseur`
 -- AUTO_INCREMENT for table `marque`
 --
 ALTER TABLE `marque`
-  MODIFY `id_marque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_marque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Constraints for dumped tables

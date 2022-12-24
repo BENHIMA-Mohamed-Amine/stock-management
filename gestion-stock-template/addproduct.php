@@ -34,7 +34,7 @@ session_start();
     content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects" />
   <meta name="author" content="Dreamguys - Bootstrap Admin Template" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Dreams Pos admin template</title>
+  <title>Add Product</title>
 
   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png" />
 
@@ -66,7 +66,7 @@ session_start();
       <div class="content">
         <div class="page-header">
           <div class="page-title">
-            <h4>Product Add</h4>
+            <h4>Add Product</h4>
             <h6>Create new product</h6>
           </div>
         </div>
