@@ -56,7 +56,7 @@ session_start();
         <div class="page-header">
           <div class="page-title">
             <h4>Supplier List</h4>
-            <h6>Manage your Suppliers</h6>
+            <h6>Manage Your Suppliers</h6>
           </div>
           <div class="page-btn">
             <a href="addsupplier.php" class="btn btn-added"><img src="assets/img/icons/plus.svg" alt="img" />Add
@@ -77,7 +77,7 @@ session_start();
               <table class="table datanew">
                 <thead>
                   <tr>
-                    <th>Customer Name</th>
+                    <th>Supplier Name</th>
                     <th>Address</th>
                     <th>Phone</th>
                     <th>E-mail</th>

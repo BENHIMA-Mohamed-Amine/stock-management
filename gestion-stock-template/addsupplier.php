@@ -31,7 +31,7 @@ session_start();
     content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects" />
   <meta name="author" content="Dreamguys - Bootstrap Admin Template" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Dreams Pos admin template</title>
+  <title>Add Supplier</title>
 
   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png" />
 
@@ -74,8 +74,8 @@ session_start();
       <div class="content">
         <div class="page-header">
           <div class="page-title">
-            <h4>Supplier Management</h4>
-            <h6>Add/Update Customer</h6>
+            <h4>Add Supplier</h4>
+            <h6>Add New Supplier</h6>
           </div>
         </div>
 
@@ -84,19 +84,19 @@ session_start();
             <form class="row" method="post" action="addsupplier.php" enctype="multipart/form-data">
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
-                  <label>supplier Last Name</label>
+                  <label>Supplier last name</label>
                   <input type="text" name="prenom" />
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
-                  <label>supplier First Name</label>
+                  <label>Supplier first name</label>
                   <input type="text" name="nom" />
                 </div>
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
-                  <label>Email</label>
+                  <label>E-mail</label>
                   <input type="text" name="email" />
                 </div>
               </div>

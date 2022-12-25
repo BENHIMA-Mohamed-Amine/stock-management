@@ -22,7 +22,7 @@ session_start();
     content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects" />
   <meta name="author" content="Dreamguys - Bootstrap Admin Template" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Dreams Pos admin template</title>
+  <title>Category List</title>
 
   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png" />
 
@@ -52,8 +52,8 @@ session_start();
       <div class="content">
         <div class="page-header">
           <div class="page-title">
-            <h4>Product Category list</h4>
-            <h6>View/Search product Category</h6>
+            <h4>Product Category List</h4>
+            <h6>View/Search Product Categories</h6>
           </div>
           <div class="page-btn">
             <a href="addcategory.php" class="btn btn-added">
@@ -77,8 +77,8 @@ session_start();
               <table class="table datanew">
                 <thead>
                   <tr>
-                    <th>Category image</th>
-                    <th>Category name</th>
+                    <th>Category Image</th>
+                    <th>Category Name</th>
                     <th>Description</th>
                     <th>Created By</th>
                     <th>Action</th>

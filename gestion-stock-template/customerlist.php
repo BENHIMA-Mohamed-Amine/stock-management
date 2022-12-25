@@ -56,7 +56,7 @@ session_start();
         <div class="page-header">
           <div class="page-title">
             <h4>Customer List</h4>
-            <h6>Manage your Customers</h6>
+            <h6>Manage Your Customers</h6>
           </div>
           <div class="page-btn">
             <a href="addcustomer.php" class="btn btn-added"><img src="assets/img/icons/plus.svg" alt="img" />Add
