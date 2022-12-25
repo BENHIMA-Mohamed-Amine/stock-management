@@ -1,8 +1,14 @@
 <?php
+// header('Content-Type: application/json, charset=UTF-8');
+
+// $request_payload = file_get_contents('php://input');
+
+// var_dump($request_payload);
 session_start();
 ?>
 <?php if (isset($_SESSION['admin'])): ?>
 <?php
+
   require_once("../php/Class/Product.php");
   require_once("../php/Class/Marque.php");
   require_once("../php/Class/Categorie.php");
@@ -37,6 +43,7 @@ session_start();
   }
 
   // print_r($_POST);
+  print_r($_POST);
 
   if (isset($_GET['num_pr'])) {
     extract($_GET);
@@ -96,8 +103,8 @@ session_start();
 
   <div class="main-wrapper">
 
-    <?php require_once("header.php"); ?>
-    <?php require_once("sidebar.php"); ?>
+    <?php #require_once("header.php"); ?>
+    <?php #require_once("sidebar.php"); ?>
     <div class="page-wrapper">
       <div class="content">
         <div class="page-header">
@@ -138,7 +145,7 @@ session_start();
                   <label>Brand Name</label>
                   <div class="row">
                     <div class="col-lg-10 col-sm-10 col-10">
-                      <select class="select" name="id_marque" id="brand" onchange="changeBrand()">
+                      <select class="select" name="id_marque" id="brand" onchange="select()">
                         <option value="">Select Brand</option>
                         <?php foreach ($brands as $brand): ?>
                         <option value="<?= $brand['id_marque']; ?>"><?= $brand['nom_marque']; ?></option>

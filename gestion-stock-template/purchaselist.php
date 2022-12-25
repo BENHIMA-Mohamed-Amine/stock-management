@@ -11,6 +11,9 @@ session_start();
   }
   $purchases = Purchase::displayAllPur();
 
+  // echo "<pre>";
+  // print_r($purchases);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,6 +88,7 @@ session_start();
                     <th>Supplier Name</th>
                     <th>Reference</th>
                     <th>Date</th>
+                    <th>Total (DH)</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -94,6 +98,7 @@ session_start();
                     <td class="text-bolds"><?= $pur['nom'] . " " . $pur['prenom']; ?></td>
                     <td><?= $pur['num_app']; ?></td>
                     <td><?= $pur['date_app']; ?></td>
+                    <td><?= $pur['total']; ?></td>
                     <td>
                       <a class="me-3" href="./purchaselist.php?num_app=<?= $pur['num_app']; ?>">
                         <img src="assets/img/icons/delete.svg" alt="img" />

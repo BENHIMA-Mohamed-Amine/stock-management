@@ -1,8 +1,17 @@
 <?php
 // error_reporting(0);
 
-echo ("<pre>");
-print_r($_POST);
+session_start();
+header('Content-Type: application/json, charset=UTF-8');
+
+$request_payload = file_get_contents('php://input');
+$_SESSION['choix'] = $request_payload;
+
+
+header('location : createsalesreturns.php');
+
+// echo ("<pre>");
+// print_r($_POST);
 // $test = $_GET['fname'];
 // var_dump($test)
 // $msg = "";
@@ -36,41 +45,3 @@ print_r($_POST);
 //         echo "<h3> Failed to upload image!</h3>";
 //     }
 // }
-?>
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Image Upload</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css" />
-</head>
-
-<body>
-    <div id="content">
-        <form method="POST" action="" enctype="multipart/form-data">
-            <div class="form-group">
-                <input class="form-control" type="file" name="uploadfile" value="" />
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary" type="submit" name="upload">UPLOAD</button>
-            </div>
-        </form>
-    </div>
-    <div id="display-image">
-        <?php
-        $query = " select * from image ";
-        $result = mysqli_query($db, $query);
-
-        while ($data = mysqli_fetch_assoc($result)) {
-        ?>
-        <img src="./image/<?php echo $data['filename']; ?>">
-
-        <?php
-        }
-        ?>
-    </div>
-</body>
-
-</html>
