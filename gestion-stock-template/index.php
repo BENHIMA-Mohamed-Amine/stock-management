@@ -252,7 +252,7 @@ session_start();
                 </div>
                 <div class="card mb-0">
                     <div class="card-body">
-                        <h4 class="card-title">Almost Expired Products</h4>
+                        <h4 class="card-title">Least Quantity in Stock</h4>
                         <div class="table-responsive dataview">
                             <table class="table datatable ">
                                 <thead>
