@@ -6,8 +6,8 @@ session_start();
   require_once("../php/Class/Supplier.php");
   require_once("../php/Class/Product.php");
   $active = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "active", 0, 0, 0);
-  if (isset($_GET['id'])) {
-    extract($_GET);
+  if (isset($_GET['id_sup'])) {
+    $id = $_GET['id_sup'];
     Supplier::supprimer($id, "fournisseur");
   }
   $suppliers = Supplier::afficher("fournisseur");
@@ -108,7 +108,7 @@ session_start();
                       <a class="me-3" href="editsupplier.php?id_sup=<?= $supplier['id'] ?>">
                         <img src="assets/img/icons/edit.svg" alt="img" />
                       </a>
-                      <a class="me-3" href="supplierlist.php?id=<?= $supplier['id'] ?>">
+                      <a class="me-3" href="supplierlist.php?id_sup=<?= $supplier['id'] ?>">
                         <img src="assets/img/icons/delete.svg" alt="img" />
                       </a>
                     </td>

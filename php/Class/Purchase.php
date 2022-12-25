@@ -36,8 +36,8 @@ class Purchase {
         return Dao::displayPur($num_app);
     }
 
-    public static function deletePrPurchase($num_pr) {
-        Dao::deletePrPurchase($num_pr);
+    public static function deletePrPurchase($num_pr, $num_app) {
+        Dao::deletePrPurchase($num_pr, $num_app);
     }
 
     public static function displayAllPur() {
@@ -48,7 +48,4 @@ class Purchase {
         Dao::deletePur($num_app);
     }
 
-    public function FunctionName(Type $var = null) {
-        # code...
-    }
 }

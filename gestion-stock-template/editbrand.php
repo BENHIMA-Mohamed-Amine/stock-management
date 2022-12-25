@@ -34,6 +34,8 @@ session_start();
     extract($_GET);
     $brand = Marque::afficherMarque($id_marque);
   }
+  // echo ("<pre>");
+  // print_r($brand);
 
 ?>
 <!DOCTYPE html>
@@ -102,8 +104,8 @@ session_start();
                 <div class="form-group">
                   <label> Brand Image</label>
                   <div class="image-upload">
-                    <input type="file" name="image" accept="image/png, image/jpeg" value="<?= $brand['image'] ?>" />
-                    <input type="hidden" name="old_image" value="<?= $brand['image'] ?>" />
+                    <input type="file" name="image" accept="image/png, image/jpeg" value="<?= $brand['br_image'] ?>" />
+                    <input type="hidden" name="old_image" value="<?= $brand['br_image'] ?>" />
                     <div class="image-uploads">
                       <img src="assets/img/icons/upload.svg" alt="img" />
                       <h4>Drag and drop a file to upload</h4>

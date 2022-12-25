@@ -151,7 +151,7 @@ class Dao {
 
     public static function afficherMarque($id_marque) {
         $pdo = Dao::getPDO();
-        $sql = "SELECT * FROM marque WHERE $id_marque = ?;";
+        $sql = "SELECT * FROM marque WHERE id_marque = ?;";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$id_marque]);
         $marque = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -254,10 +254,21 @@ class Dao {
         return $stmt->fetchAll();
     }
 
-    public static function deletePrPurchase($num_pr) {
+    public static function displayQtyPrPurchase($num_pr, $num_app) {
+        $pdo = Dao::getPDO();
+        $sql = "SELECT * FROM produit NATURAL JOIN est_compose WHERE num_app=? AND num_pr = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$num_app, $num_pr,]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function deletePrPurchase($num_pr, $num_app) {
         $res = Dao::displayPr($num_pr);
         $qty = $res['qte_stock'];
-        $res = Dao::displayPrPurchase($num_pr);
+        $res = Dao::displayQtyPrPurchase($num_pr, $num_app);
+        // echo ("<pre>");
+        // print_r($res);
+        // var_dump($num_pr, $num_app);
         $qty_purchase = $res['qte_achete'];
         $pdo = Dao::getPDO();
         $sql = "UPDATE produit SET qte_stock=?-? WHERE num_pr=?";

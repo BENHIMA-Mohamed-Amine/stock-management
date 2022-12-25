@@ -29,7 +29,7 @@ session_start();
   }
   if (isset($_GET['num_pr'])) {
     extract($_GET);
-    Purchase::deletePrPurchase($num_pr);
+    Purchase::deletePrPurchase($num_pr, $num_app);
     $prPurchases = PrPurchase::displayPrPurchase($num_app);
     $pur = Purchase::displayPur($num_app);
   }

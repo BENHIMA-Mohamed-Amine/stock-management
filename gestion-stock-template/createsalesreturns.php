@@ -154,7 +154,7 @@ session_start();
                   <label>Brand Name</label>
                   <div class="row">
                     <div class="col-lg-10 col-sm-10 col-10">
-                      <select class="select" name="id_marque" id="brand" onchange="select()">
+                      <select class="select" name="id_marque" id="brand">
                         <option value="">Select Brand</option>
                         <?php foreach ($brands as $brand): ?>
                         <option value="<?= $brand['id_marque']; ?>"><?= $brand['nom_marque']; ?></option>
@@ -254,7 +254,7 @@ session_start();
                   <thead>
                     <tr>
                       <th>Product Name</th>
-                      <th> Unit Price(DH)</th>
+                      <th>Price(DH)</th>
                       <th>QTY</th>
                       <th></th>
                     </tr>
@@ -314,7 +314,6 @@ session_start();
   <script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
 
   <script src="assets/js/script.js"></script>
-  <script src="filter.js"></script>
 
 </body>
 
