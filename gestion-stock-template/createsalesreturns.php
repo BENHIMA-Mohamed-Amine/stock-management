@@ -69,7 +69,7 @@ session_start();
     content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects" />
   <meta name="author" content="Dreamguys - Bootstrap Admin Template" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Dreams Pos admin template</title>
+  <title>New Sales</title>
 
   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png" />
 
@@ -102,8 +102,8 @@ session_start();
       <div class="content">
         <div class="page-header">
           <div class="page-title">
-            <h4>Create Sales</h4>
-            <h6>Add Sales</h6>
+            <h4>New Sales</h4>
+            <h6>Create New Sale</h6>
           </div>
         </div>
         <div class="card">
@@ -195,7 +195,7 @@ session_start();
               </div>
               <div class="col-lg-3 col-sm-6 col-12">
                 <div class="form-group">
-                  <label>Quanty</label>
+                  <label>Quantity</label>
                   <input type="text" name="qte_pr" />
                   <?php if (isset($qte_pr)): ?>
                   <p style="color:red; text-align: center">Exceed stock</p>

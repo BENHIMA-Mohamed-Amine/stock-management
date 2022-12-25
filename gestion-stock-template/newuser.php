@@ -16,7 +16,7 @@ session_start();
         content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects">
     <meta name="author" content="Dreamguys - Bootstrap Admin Template">
     <meta name="robots" content="noindex, nofollow">
-    <title>Dreams Pos admin template</title>
+    <title>New Admin</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 
@@ -50,8 +50,8 @@ session_start();
             <div class="content">
                 <div class="page-header">
                     <div class="page-title">
-                        <h4>Admin</h4>
-                        <h6>Create new admin</h6>
+                        <h4>New Admin</h4>
+                        <h6>Create New Admin</h6>
                     </div>
                 </div>
 
@@ -64,7 +64,7 @@ session_start();
                                     <input type="text" name="nom">
                                 </div>
                                 <div class="form-group">
-                                    <label>Adress</label>
+                                    <label>Address</label>
                                     <input type="text" name="adr">
                                 </div>
                                 <div class="form-group">
