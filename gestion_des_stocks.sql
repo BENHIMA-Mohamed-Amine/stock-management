@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2022 at 06:48 PM
+-- Generation Time: Dec 25, 2022 at 04:48 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -43,7 +43,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `nom`, `prenom`, `adr`, `tele`, `email`, `image`, `mdp`) VALUES
-(12, '', 'Haitam', 'safi ', '0766032618', 'belcaida', './image/admin/haitam_pic.jpg', '0000');
+(12, '', 'Haitam', '423 Qu El Qods, Sidi Kacem ', '0766032618', 'belcaida@email.com', './image/admin/haitam_pic.jpg', '0000'),
+(13, '', 'Mohamed-Amine', '1 coopérative souhaila, Safi', '0601147845', 'benhima@email.com', './image/admin/aminux.png', '0000');
 
 -- --------------------------------------------------------
 
@@ -368,7 +369,7 @@ ALTER TABLE `produit`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `categorie`
