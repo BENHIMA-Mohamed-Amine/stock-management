@@ -50,7 +50,7 @@ session_start();
     content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects" />
   <meta name="author" content="Dreamguys - Bootstrap Admin Template" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Dreams Pos admin template</title>
+  <title>Edit Category</title>
 
   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png" />
 
@@ -80,8 +80,8 @@ session_start();
       <div class="content">
         <div class="page-header">
           <div class="page-title">
-            <h4>Product Edit Category</h4>
-            <h6>Edit a product Category</h6>
+            <h4>Edit Category</h4>
+            <h6>Edit Product Category</h6>
           </div>
         </div>
         <div class="card">
@@ -96,13 +96,13 @@ session_start();
               </div>
               <div class="col-lg-6 col-sm-6 col-12">
                 <div class="form-group">
-                  <label>Category descreption</label>
+                  <label>Category Description</label>
                   <input type="text" name="desc_cat" value="<?= $cat['desc_cat'] ?>" />
                 </div>
               </div>
               <div class="col-lg-12">
                 <div class="form-group">
-                  <label> Product Image</label>
+                  <label> Category Image</label>
                   <div class="image-upload">
                     <input type="file" name="image" accept="image/png, image/jpeg" />
                     <input type="hidden" name="old_image" value="<?= $cat['cat_image'] ?>" />
