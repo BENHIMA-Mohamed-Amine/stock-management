@@ -80,8 +80,8 @@ session_start();
                             <?php ?>
                             <?php ?>
                             <div class="dash-widgetcontent">
-                                <h5><span class="counters" data-count="<?= $total_all_pur ?>"><?= $total_all_pur ?></span> DH</h5>
-                                <h6>Total Purchases</h6>
+                                <h5><span class="counters" data-count="<?= $total_all_pur ?>"><?= $total_all_pur ?></span></h5>
+                                <h6>Total Purchases (DH)</h6>
                             </div>
                         </div>
                     </div>
@@ -91,8 +91,8 @@ session_start();
                                 <span><img src="assets/img/icons/dash2.svg" alt="img"></span>
                             </div>
                             <div class="dash-widgetcontent">
-                                <h5><span class="counters" data-count="<?= $total_all_sales ?>"><?= $total_all_sales ?></span> DH</h5>
-                                <h6>Total Sales</h6>
+                                <h5><span class="counters" data-count="<?= $total_all_sales ?>"><?= $total_all_sales ?></span></h5>
+                                <h6>Total Sales (DH)</h6>
                             </div>
                         </div>
                     </div>
@@ -102,8 +102,8 @@ session_start();
                                 <span><img src="assets/img/icons/dash3.svg" alt="img"></span>
                             </div>
                             <div class="dash-widgetcontent">
-                                <h5><span class="counters" data-count="<?= $total_all_sales - $total_all_pur ?>"><?= $total_all_sales - $total_all_pur ?></span> DH</h5>
-                                <h6>Total Profit</h6>
+                                <h5><span class="counters" data-count="<?= $total_all_sales - $total_all_pur ?>"><?= $total_all_sales - $total_all_pur ?></span></h5>
+                                <h6>Total Profit (DH)</h6>
                             </div>
                         </div>
                     </div>
