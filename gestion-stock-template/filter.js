@@ -149,39 +149,69 @@ function select() {
   //     alert("success! X:" + data);
   //   },
   // });
-  // var http = new XMLHttpRequest();
+  var http = new XMLHttpRequest();
 
-  // var data = "test";
+  var data = "test";
 
-  // http.onreadystatechange = function () {
+  http.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      document.body.innerHTML = this.response;
+      // console.log(this.readyState, this.status);
+    }
+  };
+
+  http.open("POST", "createsalesreturns.php", true);
+  http.setRequestHeader("Content-Type", "application/json");
+  http.send(JSON.stringify(data));
+
+  // var variable = "value";
+
+  // // Create an XMLHttpRequest object
+  // var xhr = new XMLHttpRequest();
+
+  // // Set the request method, URL, and asynchronous flag
+  // xhr.open("POST", "createsalesreturns.php", true);
+
+  // // Set the request header
+  // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  // // Send the request with the variable as a parameter
+  // xhr.send("variable=" + variable);
+
+  // // Wait for the response from the server
+  // xhr.onload = function () {
+  //   if (xhr.status === 200) {
+  //     // Do something with the response from the server
+  //     console.log("success");
+  //   }
+  // };
+  // fetch("createsalesreturns.php", {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/x-www-form-urlencoded",
+  //   },
+  //   body: "data=Hello+World",
+  // })
+  //   .then((response) => response.text())
+  //   .then((data) => {
+  //     // This is the callback function. When the server responds, this function will be called.
+  //     // You can do something with the response here, like display it on the page.
+  //     console.log("success");
+  //   });
+
+  // var xhttp = new XMLHttpRequest();
+
+  // // Set the callback function that will be called when the server responds
+  // xhttp.onreadystatechange = function () {
   //   if (this.readyState == 4 && this.status == 200) {
-  //     document.body.innerHTML = this.response;
+  //     // This is the callback function. When the server responds, this function will be called.
+  //     // You can do something with the response here, like display it on the page.
+  //     console.log("success");
   //   }
   // };
 
-  // http.open("POST", "test.php", true);
-  // http.setRequestHeader("Content-Type", "application/json");
-  // http.send(JSON.stringify(data));
-
-  var variable = "value";
-
-  // Create an XMLHttpRequest object
-  var xhr = new XMLHttpRequest();
-
-  // Set the request method, URL, and asynchronous flag
-  xhr.open("POST", "createsalesreturns.php", true);
-
-  // Set the request header
-  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-  // Send the request with the variable as a parameter
-  xhr.send("variable=" + variable);
-
-  // Wait for the response from the server
-  xhr.onload = function () {
-    if (xhr.status === 200) {
-      // Do something with the response from the server
-      console.log("success");
-    }
-  };
+  // // Send the request to the server
+  // xhttp.open("POST", "createsalesreturns.php", true);
+  // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  // xhttp.send("data=Hello+World");
 }

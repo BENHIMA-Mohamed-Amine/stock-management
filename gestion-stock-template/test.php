@@ -2,13 +2,17 @@
 // error_reporting(0);
 
 session_start();
-header('Content-Type: application/json, charset=UTF-8');
+// header('Content-Type: application/json, charset=UTF-8');
 
 $request_payload = file_get_contents('php://input');
-$_SESSION['choix'] = $request_payload;
+
+echo ($request_payload);
 
 
-header('location : createsalesreturns.php');
+// $_SESSION['choix'] = $request_payload;
+
+
+// header('location : createsalesreturns.php');
 
 // echo ("<pre>");
 // print_r($_POST);

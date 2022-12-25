@@ -4,6 +4,8 @@
 // $request_payload = file_get_contents('php://input');
 
 // var_dump($request_payload);
+// $input = file_get_contents('php://input');
+// var_dump($input);
 session_start();
 ?>
 <?php if (isset($_SESSION['admin'])): ?>
@@ -43,7 +45,8 @@ session_start();
   }
 
   // print_r($_POST);
-  print_r($_POST);
+  // print_r($_GET);
+  // print_r($_SESSION);
 
   if (isset($_GET['num_pr'])) {
     extract($_GET);
@@ -94,6 +97,12 @@ session_start();
   <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
 
   <link rel="stylesheet" href="assets/css/style.css" />
+
+  <?php if (isset($request_payload)): ?>
+  <style>
+
+  </style>
+  <?php endif ?>
 </head>
 
 <body>
@@ -103,8 +112,8 @@ session_start();
 
   <div class="main-wrapper">
 
-    <?php #require_once("header.php"); ?>
-    <?php #require_once("sidebar.php"); ?>
+    <?php require_once("header.php"); ?>
+    <?php require_once("sidebar.php"); ?>
     <div class="page-wrapper">
       <div class="content">
         <div class="page-header">
@@ -174,7 +183,9 @@ session_start();
                     </div>
                     <div class="col-lg-2 col-sm-2 col-2 ps-0">
                       <div class="add-icon">
-                        <a href="./addcategory"><img src="assets/img/icons/plus1.svg" alt="img" /></a>
+                        <a href="./addcategory.php">
+                          <img src="assets/img/icons/plus1.svg" alt="img" />
+                        </a>
                       </div>
                     </div>
                   </div>
