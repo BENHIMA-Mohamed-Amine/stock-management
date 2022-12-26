@@ -33,6 +33,11 @@ session_start();
     $prPurchases = PrPurchase::displayPrPurchase($num_app);
     $pur = Purchase::displayPur($num_app);
   }
+
+  if (isset($_GET['num_app'])) {
+    extract($_GET);
+    $prPurchases = PrPurchase::displayPrPurchase($num_app);
+  }
   $suppliers = Supplier::afficher("fournisseur");
   $products = Product::afficher("produit");
   // print_r($prPurchases);

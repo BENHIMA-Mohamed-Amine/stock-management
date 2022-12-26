@@ -56,6 +56,12 @@ session_start();
   }
 
 
+  if (isset($_GET['num_com'])) {
+    extract($_GET);
+    $prsSales = PrSale::displayPrsSale($num_com);
+    $sale = Sale::displaySale($num_com);
+  }
+
   // $test = $_GET['fname'];
   // var_dump($test);
   // print_r($_COOKIE);
@@ -215,7 +221,7 @@ session_start();
                 <div class="form-group">
                   <label>Quantity</label>
                   <input type="text" name="qte_pr" />
-                  <?php if (isset($qte_pr)): ?>
+                  <?php if (isset($out_of_stock)): ?>
                   <p style="color:red; text-align: center">Exceed stock</p>
                   <?php endif ?>
                 </div>

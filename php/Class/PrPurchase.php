@@ -1,4 +1,5 @@
 <?php
+require_once "Dao.php";
 class PrPurchase {
     public function __construct(
         private $num_app,

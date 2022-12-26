@@ -367,12 +367,22 @@ class Dao {
         $res = Dao::displayPr($num_pr);
         $qty = $res['qte_stock'];
         $res = Dao::displayPrSale($num_pr);
+        // echo ("<pre>");
+        // print_r($res);
         $qty_sale = $res['qte_pr'];
         $pdo = Dao::getPDO();
         $sql = "UPDATE produit SET qte_stock=?+? WHERE num_pr=?";
         $pdo->prepare($sql)->execute([$qty, $qty_sale, $num_pr]);
         $sql = "DELETE FROM contient_pr WHERE num_pr  = ?";
-        $pdo->prepare($sql)->execute([$num_pr]);
+        try {
+            $pdo->prepare($sql)->execute([$num_pr]);
+        } catch (\Throwable $th) {
+            $th->getMessage();
+        }
+        // echo ("<pre>");
+        // print_r($qty);
+        // echo ("<pre>");
+        // print_r($qty_sale);
     }
 
     public static function displayAllSales() {

@@ -100,6 +100,9 @@ session_start();
                     <td><?= $pur['date_app']; ?></td>
                     <td><?= $pur['total']; ?></td>
                     <td>
+                      <a class="me-3" href="purchase-details.php?num_app=<?= $pur['num_app'] ?>">
+                        <img src="assets/img/icons/eye.svg" alt="img" />
+                      </a>
                       <a class="me-3" href="./purchaselist.php?num_app=<?= $pur['num_app']; ?>">
                         <img src="assets/img/icons/delete.svg" alt="img" />
                       </a>
