@@ -289,9 +289,14 @@ class Dao {
     }
 
     public static function deletePur($num_app) {
+        $purchases = Dao::displayPrPurchase($num_app);
+        foreach ($purchases as $pr) {
+            Dao::deletePrPurchase($pr['num_pr'], $num_app);
+        }
         $pdo = Dao::getPDO();
         $sql = "DELETE FROM approvisionnement WHERE num_app  = ?";
         $pdo->prepare($sql)->execute([$num_app]);
+
     }
 
     public static function allAboutProducts() {
