@@ -96,9 +96,9 @@ session_start();
                     <td><?= $sale['date_com'] ?></td>
                     <td><?= $sale['total'] ?></td>
                     <td>
-                      <a style="display: inline-block; margin-right:10px;" data-bs-placement="top" title="pdf"
-                        href="printPdf.php?num_com=<?= $sale['num_com'] ?>"><img src="assets/img/icons/pdf.svg"
-                          alt="img" /></a>
+                      <a target="_blank" style="display: inline-block; margin-right:10px;" data-bs-placement="top"
+                        title="pdf" href="printPdf.php?num_com=<?= $sale['num_com'] ?>"><img
+                          src="assets/img/icons/pdf.svg" alt="img" /></a>
                       <a href="salesreturnlists.php?num_com=<?= $sale['num_com'] ?>" class="me-3">
                         <img src="assets/img/icons/delete.svg" alt="img" />
                       </a>

@@ -188,4 +188,4 @@ $dompdf->render();
 
 
 // Output the generated PDF (1 = download and 0 = preview) 
-$dompdf->stream("bill.pdf", array("Attachment" => 0));
+$dompdf->stream("invoice.pdf", array("Attachment" => 0));

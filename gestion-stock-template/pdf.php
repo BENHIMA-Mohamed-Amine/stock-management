@@ -12,7 +12,7 @@ if (isset($_GET['num_com'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bill</title>
+    <title>Invoice</title>
     <style>
         * {
             margin 0;
@@ -43,7 +43,7 @@ if (isset($_GET['num_com'])) {
             color: #fe9f43;
             letter-spacing: -1px;
             line-height: 1;
-            margin-left: 440px;
+            margin-left: 400px;
         }
 
         .main p.left {
@@ -110,13 +110,12 @@ if (isset($_GET['num_com'])) {
     <div class="content">
         <div class="header">
             <p class="left-p">AMITAM STORE</p>
-            <p>Bill</p>
+            <p>Invoice</p>
         </div>
         <div class="main">
             <p class="left">
                 Hello, <?= $sale[0]['nom'] . " " . $sale[0]['prenom'] ?>.<br>
-                Thank you for shopping from our store and for<br>
-                your order.
+                Thank you for shopping from our store.
             </p>
             <p class="right">
                 ORDER <?= $sale[0]['num_com'] ?><br>
