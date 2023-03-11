@@ -1,2 +1,2 @@
-# Gestion-de-stock
-Une application web pour la gestion de stock en PHP 8, en appliquant les règles de POO.
+# Stock management 
+A dynamic web application in PHP and MySQL using the OOP, MVC and SOLID principles for stack management.
